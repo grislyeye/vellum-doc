@@ -1,6 +1,10 @@
 # \<vellum-doc>
 
-This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.
+Documentation custom element, in the style of Docsify.js. Just write your docs in plain old HTML, and get a bunch of pretty features automatically.
+
+Features include:
+
+  * Automatically generate index sidebar.
 
 ## Installation
 
@@ -15,7 +19,19 @@ npm i vellum-doc
   import 'vellum-doc/vellum-doc.js';
 </script>
 
-<vellum-doc></vellum-doc>
+<vellum-doc>
+  <section slot="content">
+    <h1 id="header">Header</h1>
+
+    <h2 id="test-1">Test 1</h2>
+
+    <h3 id="test-2">Test 2</h3>
+
+    <h4 id="test-3">Test 3</h3>
+
+    <h4 id="test-4">Test 4</h3>
+  </section>
+</vellum-doc>
 ```
 
 ## Linting and formatting
@@ -31,7 +47,6 @@ To automatically fix linting and formatting errors, run
 ```bash
 npm run format
 ```
-
 
 ## Tooling configs
 

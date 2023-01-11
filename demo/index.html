@@ -2,28 +2,24 @@
 <html lang="en-GB">
 <head>
   <meta charset="utf-8">
-  <style>
-    body {
-      background: #fafafa;
-    }
-  </style>
+  <script src="../dist/vellum-doc.js" type="module"></script>
 </head>
+
 <body>
-  <div id="demo"></div>
 
-  <script type="module">
-    import { html, render } from 'lit';
-    import '../vellum-doc.js';
+  <vellum-doc>
+    <section slot="content">
+      <h1 id="vellum-doc">&ltvellum-doc&gt</h1>
 
-    const title = 'Hello owc World!';
-    render(
-      html`
-        <vellum-doc .title=${title}>
-          some light-dom
-        </vellum-doc>
-      `,
-      document.querySelector('#demo')
-    );
-  </script>
+      <h2 id="test-1">Test 1</h2>
+
+      <h3 id="test-2">Test 2</h3>
+
+      <h4 id="test-3">Test 3</h3>
+
+      <h4 id="test-4">Test 4</h3>
+    </section>
+  </vellum-doc>
+
 </body>
 </html>
