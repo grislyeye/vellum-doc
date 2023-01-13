@@ -9,5 +9,5 @@ const baseConfig = createBasicConfig({
 export default merge(baseConfig, {
   input: './vellum-doc.js',
   output: { dir: 'dist/' },
-  plugins: [commonjs()]
+  plugins: [commonjs()],
 });

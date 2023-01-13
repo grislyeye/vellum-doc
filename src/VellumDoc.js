@@ -1,5 +1,7 @@
 import { html, css, LitElement } from 'lit';
-import { default as createOutline } from 'h5o';
+import createOutline from 'h5o';
+
+/* eslint-disable import/no-unresolved */
 import '@lion/ui/define/lion-drawer.js';
 
 export class VellumDoc extends LitElement {
@@ -98,7 +100,6 @@ export class VellumDoc extends LitElement {
   static get properties() {
     return {
       depth: { type: Number },
-      title: { type: String }
     };
   }
 
@@ -108,56 +109,77 @@ export class VellumDoc extends LitElement {
   }
 
   render() {
+    /* eslint-disable lit/no-duplicate-template-bindings */
     return html`
       <lion-drawer id="sidebar">
-        <svg class="toggle" slot="invoker" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        <svg
+          class="toggle"
+          slot="invoker"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="feather feather-menu"
+        >
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
 
-        <div slot="content">
-          ${this.renderIndex()}
-        </div>
+        <div slot="content">${this.renderIndex()}</div>
       </lion-drawer>
 
       <article id="document">
         <slot name="content"></slot>
       </article>
     `;
+    /* eslint-enable lit/no-duplicate-template-bindings */
   }
 
   renderIndex() {
-    const renderIndexHeader = (section) => {
-      const heading = section.heading;
-      return html`
-        <h1><a href="#${heading.id}">${heading.textContent}</a></h1>
+    const renderSubIndex = currentDepth => section => {
+      if (currentDepth > this.depth) return html``;
 
-          ${
-            section.sections.length > 0 ? html`<ul id="index">${section.sections.map(renderSubIndex(0))}</ul>` : html``
-          }
-        <li>
-      `
-    };
-
-    const renderSubIndex = (currentDepth) => (section) => {
-      if (currentDepth > this.depth) return html``
-
-      const heading = section.heading;
+      const { heading } = section;
       return html`
         <li>
           <p><a href="#${heading.id}">${heading.textContent}</a></p>
 
-          ${
-            section.sections.length > 0 ? html`<ul>${section.sections.map(renderSubIndex(currentDepth + 1))}</ul>` : html``
-          }
-        <li>
-      `
+          ${section.sections.length > 0
+            ? html`<ul>
+                ${section.sections.map(renderSubIndex(currentDepth + 1))}
+              </ul>`
+            : html``}
+        </li>
+
+        <li></li>
+      `;
     };
 
-    return this.outline()
-      .sections
-      .map(renderIndexHeader)
+    const renderIndexHeader = section => {
+      const { heading } = section;
+      return html`
+        <h1><a href="#${heading.id}">${heading.textContent}</a></h1>
+
+        ${section.sections.length > 0
+          ? html`<ul id="index">
+              ${section.sections.map(renderSubIndex(0))}
+            </ul>`
+          : html``}
+        <li></li>
+      `;
+    };
+
+    return this.outline().sections.map(renderIndexHeader);
   }
 
   get contentElement() {
-    return this.querySelector('*[slot="content"]')
+    return this.querySelector('*[slot="content"]');
   }
 
   outline() {
