@@ -12,6 +12,13 @@
     "lint": "eslint --ext .js,.html . --ignore-path .gitignore && prettier \"**/*.js\" --check --ignore-path .gitignore",
     "format": "eslint --ext .js,.html . --fix --ignore-path .gitignore && prettier \"**/*.js\" --write --ignore-path .gitignore"
   },
+  "dependencies": {
+    "@lion/ui": "^0.0.12",
+    "@rollup/plugin-commonjs": "^24.0.0",
+    "deepmerge": "^4.2.2",
+    "h5o": "^0.11.3",
+    "lit": "^2.5.0"
+  },
   "devDependencies": {
     "@open-wc/building-rollup": "^2.2.1",
     "@open-wc/eslint-config": "^4.3.0",
@@ -46,12 +53,5 @@
       "eslint --fix",
       "prettier --write"
     ]
-  },
-  "dependencies": {
-    "@lion/ui": "^0.0.12",
-    "@rollup/plugin-commonjs": "^24.0.0",
-    "deepmerge": "^4.2.2",
-    "h5o": "^0.11.3",
-    "lit": "^2.5.0"
   }
 }
