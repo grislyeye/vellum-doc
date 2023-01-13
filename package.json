@@ -6,6 +6,7 @@
   "version": "0.0.1",
   "main": "index.js",
   "module": "index.js",
+  "files": [ "dist" ],
   "scripts": {
     "build": "rimraf dist && rollup -c rollup.config.js",
     "start": "concurrently --kill-others --names rollup,web-dev-server \"rollup --watch -c rollup.config.js\" \"web-dev-server\"",
