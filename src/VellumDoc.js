@@ -18,7 +18,7 @@ export class VellumDoc extends LitElement {
         left: 0;
         top: 0;
         --min-width: 0;
-        --max-width: 15em;
+        --max-width: var(--sidebar-width, 15em);
         font-weight: bold;
         padding-top: 10em;
         padding-left: 2em;
@@ -58,6 +58,7 @@ export class VellumDoc extends LitElement {
       ul#index > li {
         font-variant-caps: small-caps;
         font-size: 2em;
+        font-weight: bold;
       }
 
       ul#index > li ul {
@@ -96,7 +97,7 @@ export class VellumDoc extends LitElement {
 
       #document {
         padding-top: 6em;
-        padding-left: 5em;
+        padding-left: var(--sidebar-width, 5em);
       }
     `;
   }
