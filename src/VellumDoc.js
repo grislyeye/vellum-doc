@@ -161,8 +161,6 @@ export class VellumDoc extends LitElement {
               </ul>`
             : html``}
         </li>
-
-        <li></li>
       `;
     };
 
