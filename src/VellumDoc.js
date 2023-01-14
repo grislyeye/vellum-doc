@@ -51,15 +51,20 @@ export class VellumDoc extends LitElement {
         color: black;
       }
 
+      ul#index {
+        padding-left: 0;
+      }
+
       ul#index > li {
         font-variant-caps: small-caps;
         font-size: 2em;
       }
 
-      ul#index > li > ul {
+      ul#index > li ul {
         font-variant-caps: normal;
         font-weight: normal;
         margin-left: 1em;
+        padding: 0;
         font-size: 18px;
       }
 
@@ -70,7 +75,6 @@ export class VellumDoc extends LitElement {
       ul#index,
       #index ul {
         list-style-type: none;
-        padding-left: 0;
         line-height: 1.5em;
       }
 
