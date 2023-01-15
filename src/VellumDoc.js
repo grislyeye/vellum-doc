@@ -64,7 +64,7 @@ export class VellumDoc extends LitElement {
       ul#index > li ul {
         font-variant-caps: normal;
         font-weight: normal;
-        margin-left: 1em;
+        margin-left: 2em;
         padding: 0;
         font-size: 18px;
       }
@@ -76,7 +76,6 @@ export class VellumDoc extends LitElement {
       ul#index,
       #index ul {
         list-style-type: none;
-        line-height: 1.5em;
       }
 
       .toggle {
