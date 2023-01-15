@@ -64,7 +64,7 @@ export class VellumDoc extends LitElement {
       ul#index > li ul {
         font-variant-caps: normal;
         font-weight: normal;
-        margin-left: 2em;
+        margin-left: 1.8em;
         padding: 0;
         font-size: 18px;
       }
