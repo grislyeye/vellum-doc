@@ -177,14 +177,14 @@ export class VellumDoc extends LitElement {
       `;
     };
 
-    return this.outline().sections.map(renderIndexHeader);
+    return this.outline.sections.map(renderIndexHeader);
   }
 
   get contentElement() {
     return this.querySelector('*[slot="content"]');
   }
 
-  outline() {
+  get outline() {
     return createOutline(this.contentElement);
   }
 }
