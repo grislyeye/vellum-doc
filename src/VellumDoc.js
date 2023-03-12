@@ -105,6 +105,7 @@ export class VellumDoc extends LitElement {
   static get properties() {
     return {
       depth: { type: Number },
+      outline: { type: Object },
     };
   }
 
@@ -140,7 +141,7 @@ export class VellumDoc extends LitElement {
       </lion-drawer>
 
       <article id="document">
-        <slot name="content"></slot>
+        <slot name="content" @slotchange=${this.updateIndex}></slot>
       </article>
     `;
     /* eslint-enable lit/no-duplicate-template-bindings */
@@ -178,14 +179,14 @@ export class VellumDoc extends LitElement {
       `;
     };
 
-    return this.outline.sections.map(renderIndexHeader);
+    return this.outline ? this.outline.map(renderIndexHeader) : html``;
   }
 
   get contentElement() {
-    return this.querySelector('*[slot="content"]');
+    return this.querySelector('section');
   }
 
-  get outline() {
-    return createOutline(this.contentElement);
+  updateIndex() {
+    this.outline = createOutline(this.contentElement).sections;
   }
 }

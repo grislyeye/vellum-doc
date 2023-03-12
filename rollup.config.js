@@ -1,13 +1,11 @@
-import merge from 'deepmerge';
-import { createBasicConfig } from '@open-wc/building-rollup';
+import resolve from '@rollup/plugin-node-resolve';
+import babel from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 
-const baseConfig = createBasicConfig({
-  developmentMode: process.env.ROLLUP_WATCH === 'true',
-});
-
-export default merge(baseConfig, {
+export default {
   input: './vellum-doc.js',
-  output: { dir: 'dist/' },
-  plugins: [commonjs()],
-});
+  output: {
+    dir: 'dist/',
+  },
+  plugins: [resolve(), commonjs(), babel({ babelHelpers: 'bundled' })],
+};

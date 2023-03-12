@@ -3,26 +3,32 @@
   "description": "Simple documentation site generator custom element.",
   "license": "MIT",
   "author": "vellum-doc",
-  "version": "0.0.2",
+  "version": "0.1.0",
+  "type": "module",
   "main": "index.js",
   "module": "index.js",
-  "files": [ "dist" ],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "rimraf dist && rollup -c rollup.config.js",
     "start": "concurrently --kill-others --names rollup,web-dev-server \"rollup --watch -c rollup.config.js\" \"web-dev-server\"",
     "lint": "eslint --ext .js,.html . --ignore-path .gitignore && prettier \"**/*.js\" --check --ignore-path .gitignore",
-    "format": "eslint --ext .js,.html . --fix --ignore-path .gitignore && prettier \"**/*.js\" --write --ignore-path .gitignore"
+    "format": "eslint --ext .js,.html . --fix --ignore-path .gitignore && prettier \"**/*.js\" --write --ignore-path .gitignore",
+    "watch": "npm-watch build"
   },
   "dependencies": {
-    "@lion/ui": "^0.0.12",
-    "@rollup/plugin-commonjs": "^24.0.0",
-    "deepmerge": "^4.2.2",
+    "@lion/ui": "^0.1.5",
     "h5o": "^0.11.3",
-    "lit": "^2.5.0"
+    "lit": "^2.6.1"
   },
   "devDependencies": {
-    "@open-wc/building-rollup": "^2.2.1",
+    "@babel/core": "^7.21.0",
+    "@babel/preset-env": "^7.20.2",
     "@open-wc/eslint-config": "^4.3.0",
+    "@rollup/plugin-babel": "^6.0.3",
+    "@rollup/plugin-commonjs": "^24.0.1",
+    "@rollup/plugin-node-resolve": "^15.0.1",
     "@web/dev-server": "^0.1.21",
     "concurrently": "^7.6.0",
     "eslint": "^7.32.0",
@@ -30,9 +36,10 @@
     "husky": "^4.3.8",
     "lint-staged": "^10.5.4",
     "merge": "^2.1.1",
+    "npm-watch": "^0.11.0",
     "prettier": "^2.3.2",
     "rimraf": "^3.0.2",
-    "rollup": "^2.79.1"
+    "rollup": "^3.19.1"
   },
   "eslintConfig": {
     "extends": [
@@ -54,5 +61,8 @@
       "eslint --fix",
       "prettier --write"
     ]
+  },
+  "watch": {
+    "build": "src/*"
   }
 }
