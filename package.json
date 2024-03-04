@@ -3,7 +3,7 @@
   "description": "Simple documentation site generator custom element.",
   "license": "MIT",
   "author": "vellum-doc",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "main": "index.js",
   "module": "index.js",
