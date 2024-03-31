@@ -9,9 +9,9 @@ import resolve from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 
 export default {
-  input: 'my-element.js',
+  input: 'vellum-doc.js',
   output: {
-    file: 'my-element.bundled.js',
+    file: 'vellum-doc.bundled.js',
     format: 'esm',
   },
   onwarn(warning) {
