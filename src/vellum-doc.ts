@@ -49,7 +49,7 @@ export class VellumDocument extends LitElement {
     }
 
     #document {
-      margin-left: calc(var(--index-width, var(--default-index-width)) + var(--gap));
+      margin-left: calc(var(--index-width, var(--default-index-width)) + var(--gap, 0px));
     }
   `;
 
