@@ -1,63 +1,92 @@
-/**
- * @license
- * Copyright 2019 Google LLC
- * SPDX-License-Identifier: BSD-3-Clause
- */
-
 import { LitElement, html, css } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { customElement } from 'lit/decorators.js';
 
-/**
- * An example element.
- *
- * @fires count-changed - Indicates when the count changes
- * @slot - This element has a slot
- * @csspart button - The button
- */
 @customElement('vellum-doc')
 export class VellumDocument extends LitElement {
   static override styles = css`
     :host {
       display: block;
-      border: solid 1px gray;
-      padding: 16px;
-      max-width: 800px;
+
+      padding: 0;
+      margin: 0;
+
+      --default-index-width: 300px;
+      --padding-gap: calc(var(--gap) / 2);
+    }
+
+    #index {
+      width: var(--index-width, var(--default-index-width));
+      border-right: var(--index-divider-border, 1px solid);
+      padding-right: calc(var(--gap) / 2);
+
+      font-size: var(--index-font-size, 15px);
+
+      h1 {
+        font-size: 1.3em;
+        text-align: center;
+      }
+
+      h2 {
+        font-size: 1.15em;
+      }
+
+      h3 {
+        font-size: 1em;
+        padding-left: 1.4em;
+      }
+
+      h4 {
+        font-size: 0.9em;
+        padding-left: 3em;
+      }
+    }
+
+    .scrollable {
+      max-height: 100vh;
+      position: fixed;
+      top: 0;
+      overflow-y: auto;
+    }
+
+    #document {
+      margin-left: calc(var(--index-width, var(--default-index-width)) + var(--gap));
     }
   `;
 
-  /**
-   * The name to say "Hello" to.
-   */
-  @property()
-  name = 'World';
+  get headings(): HTMLElement[] {
+    return Array.from(this.querySelectorAll("h1, h2, h3, h4"))
+  }
 
-  /**
-   * The number of times the button has been clicked.
-   */
-  @property({ type: Number })
-  count = 0;
+  override connectedCallback() {
+    super.connectedCallback()
+    this.labelHeaders()
+  }
+
+  labelHeaders() {
+    this.headings.forEach(heading => {
+      if(!heading.id) heading.id = Math.random().toString(36).slice(2)
+    });
+  }
 
   override render() {
     return html`
-      <h1>${this.sayHello(this.name)}!</h1>
-      <button @click=${this._onClick} part="button">
-        Click Count: ${this.count}
-      </button>
-      <slot></slot>
-    `;
+      <div id="index" class="scrollable">
+        ${this.renderIndex()}
+      </div>
+      <article id="document">
+        <slot></slot>
+      </article>
+    `
   }
 
-  private _onClick() {
-    this.count++;
-    this.dispatchEvent(new CustomEvent('count-changed'));
-  }
+  private renderIndex() {
+    const index: [HTMLElement, string][] =
+      this.headings
+        .map(heading => [heading.cloneNode(true) as HTMLElement, heading.id])
 
-  /**
-   * Formats a greeting
-   * @param name The name to say "Hello" to
-   */
-  sayHello(name: string): string {
-    return `Hello, ${name}`;
+    index.forEach(([heading,]: [HTMLElement, string]) => heading.removeAttribute('id'))
+
+    return index.map(([heading, id]: [HTMLElement, string]) => html`<a href="#${id}">${heading}</a>`)
   }
 }
 

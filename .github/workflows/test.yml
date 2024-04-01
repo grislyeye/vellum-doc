@@ -16,6 +16,8 @@ jobs:
         run: npm ci
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
+      - name: Lint
+        run: npm run lint
       - name: Build
         run: npm run build --if-present
       - name: Run tests

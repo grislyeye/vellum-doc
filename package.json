@@ -9,7 +9,7 @@
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc --watch",
-    "clean": "rimraf vellum-doc.{d.ts,d.ts.map,js,js.map} test/vellum-doc.{d.ts,d.ts.map,js,js.map} test/vellum-doc_test.{d.ts,d.ts.map,js,js.map}",
+    "clean": "rimraf vellum-doc.{d.ts,d.ts.map,js,js.map} test/vellum-doc.{d.ts,d.ts.map,js,js.map} test/*_test.{d.ts,d.ts.map,js,js.map}",
     "lint": "npm run lint:lit-analyzer && npm run lint:eslint",
     "lint:eslint": "eslint 'src/**/*.ts'",
     "lint:lit-analyzer": "lit-analyzer",
@@ -22,8 +22,7 @@
     "test:dev": "wtr",
     "test:watch": "wtr --watch",
     "test:prod": "MODE=prod wtr",
-    "test:prod:watch": "MODE=prod wtr --watch",
-    "checksize": "rollup -c ; cat vellum-doc.bundled.js | gzip -9 | wc -c ; rm vellum-doc.bundled.js"
+    "test:prod:watch": "MODE=prod wtr --watch"
   },
   "keywords": [
     "web-components",
@@ -36,14 +35,12 @@
   "author": "Ric Wood <ric@grislyeye.com>",
   "license": "BSD-3-Clause",
   "dependencies": {
-    "@rollup/plugin-terser": "^0.4.4",
     "lit": "^3.1.2"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.9.4",
     "@open-wc/testing": "^4.0.0",
-    "@rollup/plugin-node-resolve": "^15.2.3",
-    "@rollup/plugin-replace": "^5.0.5",
+    "@types/chai": "^4.3.14",
     "@types/mocha": "^10.0.6",
     "@typescript-eslint/eslint-plugin": "^7.4.0",
     "@typescript-eslint/parser": "^7.4.0",
@@ -52,11 +49,11 @@
     "@web/test-runner": "^0.18.1",
     "@web/test-runner-playwright": "^0.11.0",
     "@webcomponents/webcomponentsjs": "^2.8.0",
+    "chai": "^5.1.0",
     "eslint": "^8.57.0",
     "lit-analyzer": "^2.0.3",
     "prettier": "^3.2.5",
     "rimraf": "^5.0.5",
-    "rollup": "^4.13.2",
     "typescript": "~5.4.3"
   },
   "customElements": "custom-elements.json"

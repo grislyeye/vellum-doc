@@ -10,7 +10,9 @@
     "ecmaVersion": 2020,
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint"],
+  "plugins": [
+    "@typescript-eslint"
+  ],
   "env": {
     "browser": true
   },
@@ -31,7 +33,9 @@
   },
   "overrides": [
     {
-      "files": ["rollup.config.js", "web-test-runner.config.js"],
+      "files": [
+        "web-test-runner.config.js"
+      ],
       "env": {
         "node": true
       }
@@ -42,10 +46,7 @@
         "**/custom_typings/*.ts",
         "packages/labs/ssr/src/test/integration/tests/**",
         "packages/labs/ssr/src/lib/util/parse5-utils.ts"
-      ],
-      "rules": {
-        "@typescript-eslint/no-explicit-any": "off"
-      }
+      ]
     }
   ]
 }
