@@ -1,6 +1,6 @@
 {
   "name": "vellum-doc",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "description": "A simple web component",
   "main": "vellum-doc.js",
   "module": "vellum-doc.js",
@@ -31,6 +31,7 @@
   "author": "Ric Wood <ric@grislyeye.com>",
   "license": "BSD-3-Clause",
   "dependencies": {
+    "@sindresorhus/slugify": "^2.2.1",
     "lit": "^3.1.2"
   },
   "devDependencies": {

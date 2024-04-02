@@ -1,5 +1,6 @@
 import { LitElement, html, css } from 'lit'
 import { customElement } from 'lit/decorators.js'
+import { slugifyWithCounter } from '@sindresorhus/slugify'
 
 @customElement('vellum-doc')
 export class VellumDocument extends LitElement {
@@ -54,6 +55,8 @@ export class VellumDocument extends LitElement {
     }
   `
 
+  private slugify = slugifyWithCounter()
+
   get headings(): HTMLElement[] {
     return Array.from(this.querySelectorAll('h1, h2, h3, h4'))
   }
@@ -65,7 +68,13 @@ export class VellumDocument extends LitElement {
 
   labelHeaders() {
     this.headings.forEach(heading => {
-      if (!heading.id) heading.id = Math.random().toString(36).slice(2)
+      if (!heading.id) {
+        const newId = heading.textContent
+          ? this.slugify(heading.textContent)
+          : Math.random().toString(36).slice(2)
+
+        heading.id = newId
+      }
     })
   }
 
