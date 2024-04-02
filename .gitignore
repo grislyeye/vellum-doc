@@ -1,23 +1,11 @@
-## editors
-/.idea
-/.vscode
-
-## system files
-.DS_Store
-
-## npm
 /node_modules/
-/npm-debug.log
-
-## testing
-/coverage/
-
-## temp folders
-/.tmp/
-
-# build
-/_site/
-/dist/
-/out-tsc/
-
-storybook-static
+/lib/
+/test/
+custom-elements.json
+# top level source
+vellum-doc.js
+vellum-doc.js.map
+vellum-doc.d.ts
+vellum-doc.d.ts.map
+# only generated for size check
+vellum-doc.bundled.js

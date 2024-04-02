@@ -1,0 +1,5 @@
+node_modules/*
+docs/*
+docs-src/*
+custom-elements.json
+web-dev-server.config.js

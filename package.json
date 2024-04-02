@@ -1,69 +1,51 @@
 {
   "name": "vellum-doc",
-  "description": "Simple documentation site generator custom element.",
-  "license": "MIT",
-  "author": "vellum-doc",
-  "version": "0.1.2",
+  "version": "0.2.0",
+  "description": "A simple web component",
+  "main": "vellum-doc.js",
+  "module": "vellum-doc.js",
   "type": "module",
-  "main": "index.js",
-  "module": "index.js",
-  "files": [
-    "dist"
-  ],
   "scripts": {
-    "build": "rimraf dist && rollup -c rollup.config.js",
-    "start": "concurrently --kill-others --names rollup,web-dev-server \"rollup --watch -c rollup.config.js\" \"web-dev-server\"",
-    "lint": "eslint --ext .js,.html . --ignore-path .gitignore && prettier \"**/*.js\" --check --ignore-path .gitignore",
-    "format": "eslint --ext .js,.html . --fix --ignore-path .gitignore && prettier \"**/*.js\" --write --ignore-path .gitignore",
-    "watch": "npm-watch build",
-    "prepare": "husky"
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "clean": "rimraf vellum-doc.{d.ts,d.ts.map,js,js.map} test/vellum-doc.{d.ts,d.ts.map,js,js.map} test/*_test.{d.ts,d.ts.map,js,js.map}",
+    "lint": "npm run lint:lit-analyzer && npm run lint:eslint",
+    "lint:eslint": "eslint 'src/**/*.ts'",
+    "lint:lit-analyzer": "lit-analyzer",
+    "format": "prettier \"**/*.{cjs,html,js,json,md,ts}\" --ignore-path ./.eslintignore --write",
+    "analyze": "cem analyze --litelement --globs \"src/**/*.ts\"",
+    "analyze:watch": "cem analyze --litelement --globs \"src/**/*.ts\" --watch",
+    "serve": "wds --watch",
+    "serve:prod": "MODE=prod npm run serve",
+    "test": "npm run lint && npm run analyze"
   },
+  "keywords": [
+    "web-components",
+    "lit-element",
+    "typescript",
+    "lit",
+    "publishing",
+    "vellum"
+  ],
+  "author": "Ric Wood <ric@grislyeye.com>",
+  "license": "BSD-3-Clause",
   "dependencies": {
-    "@lion/ui": "^0.5.6",
-    "h5o": "^0.11.3",
     "lit": "^3.1.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.24.3",
-    "@babel/preset-env": "^7.24.3",
-    "@open-wc/eslint-config": "^12.0.3",
-    "@rollup/plugin-babel": "^6.0.4",
-    "@rollup/plugin-commonjs": "^25.0.7",
-    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@custom-elements-manifest/analyzer": "^0.9.4",
+    "@open-wc/testing": "^4.0.0",
+    "@types/chai": "^4.3.14",
+    "@types/mocha": "^10.0.6",
+    "@typescript-eslint/eslint-plugin": "^7.4.0",
+    "@typescript-eslint/parser": "^7.4.0",
     "@web/dev-server": "^0.4.3",
-    "concurrently": "^8.2.2",
+    "@webcomponents/webcomponentsjs": "^2.8.0",
     "eslint": "^8.57.0",
-    "eslint-config-prettier": "^9.1.0",
-    "husky": "^9.0.11",
-    "lint-staged": "^15.2.2",
-    "merge": "^2.1.1",
-    "npm-watch": "^0.11.0",
+    "lit-analyzer": "^2.0.3",
     "prettier": "^3.2.5",
     "rimraf": "^5.0.5",
-    "rollup": "^4.13.0"
+    "typescript": "~5.4.3"
   },
-  "eslintConfig": {
-    "extends": [
-      "@open-wc",
-      "prettier"
-    ]
-  },
-  "prettier": {
-    "singleQuote": true,
-    "arrowParens": "avoid"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.js": [
-      "eslint --fix",
-      "prettier --write"
-    ]
-  },
-  "watch": {
-    "build": "src/*"
-  }
+  "customElements": "custom-elements.json"
 }
