@@ -1,6 +1,6 @@
 {
   "name": "vellum-doc",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "A simple web component",
   "main": "vellum-doc.js",
   "module": "vellum-doc.js",
@@ -18,7 +18,7 @@
     "serve": "wds --watch",
     "serve:prod": "MODE=prod npm run serve",
     "test": "npm run lint && npm run analyze",
-    "prepublish": "npm run clean && npm run test && npm run build"
+    "prepublishOnly": "npm run clean && npm run test && npm run build"
   },
   "keywords": [
     "web-components",
