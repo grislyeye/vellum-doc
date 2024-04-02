@@ -1,5 +1,5 @@
-import { LitElement, html, css } from 'lit';
-import { customElement } from 'lit/decorators.js';
+import { LitElement, html, css } from 'lit'
+import { customElement } from 'lit/decorators.js'
 
 @customElement('vellum-doc')
 export class VellumDocument extends LitElement {
@@ -49,12 +49,14 @@ export class VellumDocument extends LitElement {
     }
 
     #document {
-      margin-left: calc(var(--index-width, var(--default-index-width)) + var(--gap, 0px));
+      margin-left: calc(
+        var(--index-width, var(--default-index-width)) + var(--gap, 0px)
+      );
     }
-  `;
+  `
 
   get headings(): HTMLElement[] {
-    return Array.from(this.querySelectorAll("h1, h2, h3, h4"))
+    return Array.from(this.querySelectorAll('h1, h2, h3, h4'))
   }
 
   override connectedCallback() {
@@ -64,15 +66,13 @@ export class VellumDocument extends LitElement {
 
   labelHeaders() {
     this.headings.forEach(heading => {
-      if(!heading.id) heading.id = Math.random().toString(36).slice(2)
-    });
+      if (!heading.id) heading.id = Math.random().toString(36).slice(2)
+    })
   }
 
   override render() {
     return html`
-      <div id="index" class="scrollable">
-        ${this.renderIndex()}
-      </div>
+      <div id="index" class="scrollable">${this.renderIndex()}</div>
       <article id="document">
         <slot></slot>
       </article>
@@ -80,18 +80,24 @@ export class VellumDocument extends LitElement {
   }
 
   private renderIndex() {
-    const index: [HTMLElement, string][] =
-      this.headings
-        .map(heading => [heading.cloneNode(true) as HTMLElement, heading.id])
+    const index: [HTMLElement, string][] = this.headings.map(heading => [
+      heading.cloneNode(true) as HTMLElement,
+      heading.id
+    ])
 
-    index.forEach(([heading,]: [HTMLElement, string]) => heading.removeAttribute('id'))
+    index.forEach(([heading]: [HTMLElement, string]) =>
+      heading.removeAttribute('id')
+    )
 
-    return index.map(([heading, id]: [HTMLElement, string]) => html`<a href="#${id}">${heading}</a>`)
+    return index.map(
+      ([heading, id]: [HTMLElement, string]) =>
+        html`<a href="#${id}">${heading}</a>`
+    )
   }
 }
 
 declare global {
   interface HTMLElementTagNameMap {
-    'vellum-doc': VellumDocument;
+    'vellum-doc': VellumDocument
   }
 }

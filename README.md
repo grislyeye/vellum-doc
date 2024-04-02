@@ -35,12 +35,12 @@ npm i vellum-doc
 
 The element can be customized using the following CSS variables:
 
-| Variable                 | Description                                                  | Default     |
-| ------------------------ | ------------------------------------------------------------ | ----------- |
-| `--index-width`          | Width of the index sidebar.                                  | `300px`     |
+| Variable                 | Description                                                                                                                       | Default     |
+| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `--index-width`          | Width of the index sidebar.                                                                                                       | `300px`     |
 | `--index-divider-border` | Border style of the index/document divider (as the [border](https://developer.mozilla.org/en-US/docs/Web/CSS/border)) declaration | `1px solid` |
-| `--index-font-size`      | Base font size for the index.                                | `15px`      |
-| `--gap`                  | Gap between index and document.                              | `0`         |
+| `--index-font-size`      | Base font size for the index.                                                                                                     | `15px`      |
+| `--gap`                  | Gap between index and document.                                                                                                   | `0`         |
 
 ## Setup
 
