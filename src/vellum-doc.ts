@@ -11,13 +11,12 @@ export class VellumDocument extends LitElement {
       margin: 0;
 
       --default-index-width: 300px;
-      --padding-gap: calc(var(--gap) / 2);
     }
 
     #index {
       width: var(--index-width, var(--default-index-width));
       border-right: var(--index-divider-border, 1px solid);
-      padding-right: calc(var(--gap) / 2);
+      margin-right: calc(var(--gap) / 2);
 
       font-size: var(--index-font-size, 15px);
 
@@ -50,7 +49,7 @@ export class VellumDocument extends LitElement {
 
     #document {
       margin-left: calc(
-        var(--index-width, var(--default-index-width)) + var(--gap, 0px)
+        var(--index-width, var(--default-index-width)) + var(--gap) / 2
       );
     }
   `
