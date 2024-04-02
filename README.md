@@ -35,12 +35,17 @@ npm i vellum-doc
 
 The element can be customized using the following CSS variables:
 
-| Variable                 | Description                                                                                                                       | Default     |
-| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| `--index-width`          | Width of the index sidebar.                                                                                                       | `300px`     |
-| `--index-divider-border` | Border style of the index/document divider (as the [border](https://developer.mozilla.org/en-US/docs/Web/CSS/border)) declaration | `1px solid` |
-| `--index-font-size`      | Base font size for the index.                                                                                                     | `15px`      |
-| `--gap`                  | Gap between index and document.                                                                                                   | `0`         |
+| Variable                 | Description                                                                                                                                         | Default                            |
+| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
+| `--index-width`          | Width of the index sidebar.                                                                                                                         | `300px`                            |
+| `--index-divider-border` | Border style of the index/document divider (as the [border](https://developer.mozilla.org/en-US/docs/Web/CSS/border)) declaration                   | `1px solid`                        |
+| `--index-font-size`      | Base font size for the index.                                                                                                                       | `15px`                             |
+| `--gap`                  | Gap between index and document.                                                                                                                     | `0`                                |
+| `--index-font-family`    | Font family of the document index.                                                                                                                  | `san-serif`                        |
+| `--index-level-1-font`   | Font style of the index links to level 1 headers (`h1`) as defined by the [`font` property](https://developer.mozilla.org/en-US/docs/Web/CSS/font). | `1.3em bold` with inherited font.  |
+| `--index-level-2-font`   | Font style of the index links to level 2 headers (`h2`) as defined by the [`font` property](https://developer.mozilla.org/en-US/docs/Web/CSS/font). | `1.15em bold` with inherited font. |
+| `--index-level-3-font`   | Font style of the index links to level 3 headers (`h3`) as defined by the [`font` property](https://developer.mozilla.org/en-US/docs/Web/CSS/font). | `1em` with inherited font.         |
+| `--index-level-4-font`   | Font style of the index links to level 4 headers (`h4`) as defined by the [`font` property](https://developer.mozilla.org/en-US/docs/Web/CSS/font). | `0.9em` with inherited font.       |
 
 ## Setup
 

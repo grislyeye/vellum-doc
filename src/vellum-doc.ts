@@ -19,25 +19,32 @@ export class VellumDocument extends LitElement {
       border-right: var(--index-divider-border, 1px solid);
       margin-right: calc(var(--gap) / 2);
 
+      --font-family: var(--index-font-family, san-serif);
+
       font-size: var(--index-font-size, 15px);
 
       h1 {
-        font-size: 1.3em;
+        font: var(--index-level-1-font, bold 1.3em var(--font-family));
         text-align: center;
       }
 
       h2 {
-        font-size: 1.15em;
+        font: var(--index-level-2-font, bold 1.15em var(--font-family));
       }
 
       h3 {
-        font-size: 1em;
+        font: var(--index-level-3-font, 1em var(--font-family));
         padding-left: 1.4em;
       }
 
       h4 {
-        font-size: 0.9em;
         padding-left: 3em;
+        font: var(--index-level-4-font, 0.9em var(--font-family));
+      }
+
+      a {
+        color: inherit;
+        text-decoration: inherit;
       }
     }
 
