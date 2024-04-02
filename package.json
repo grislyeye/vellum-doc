@@ -17,7 +17,8 @@
     "analyze:watch": "cem analyze --litelement --globs \"src/**/*.ts\" --watch",
     "serve": "wds --watch",
     "serve:prod": "MODE=prod npm run serve",
-    "test": "npm run lint && npm run analyze"
+    "test": "npm run lint && npm run analyze",
+    "prepublish": "npm run clean && npm run test && npm run build"
   },
   "keywords": [
     "web-components",
