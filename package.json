@@ -18,11 +18,7 @@
     "analyze:watch": "cem analyze --litelement --globs \"src/**/*.ts\" --watch",
     "serve": "wds --watch",
     "serve:prod": "MODE=prod npm run serve",
-    "test": "npm run test:dev && npm run test:prod",
-    "test:dev": "wtr",
-    "test:watch": "wtr --watch",
-    "test:prod": "MODE=prod wtr",
-    "test:prod:watch": "MODE=prod wtr --watch"
+    "test": "npm run lint && npm run analyze"
   },
   "keywords": [
     "web-components",
@@ -45,11 +41,7 @@
     "@typescript-eslint/eslint-plugin": "^7.4.0",
     "@typescript-eslint/parser": "^7.4.0",
     "@web/dev-server": "^0.4.3",
-    "@web/dev-server-legacy": "^2.1.0",
-    "@web/test-runner": "^0.18.1",
-    "@web/test-runner-playwright": "^0.11.0",
     "@webcomponents/webcomponentsjs": "^2.8.0",
-    "chai": "^5.1.0",
     "eslint": "^8.57.0",
     "lit-analyzer": "^2.0.3",
     "prettier": "^3.2.5",
