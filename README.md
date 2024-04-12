@@ -2,6 +2,8 @@
 
 A simple document web component for web publishing. Creates and index
 
+**[Demo](https://grislyeye.github.io/vellum-docs/)**
+
 ## Installation
 
 ```bash
