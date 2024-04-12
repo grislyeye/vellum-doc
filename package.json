@@ -39,15 +39,15 @@
     "@open-wc/testing": "^4.0.0",
     "@types/chai": "^4.3.14",
     "@types/mocha": "^10.0.6",
-    "@typescript-eslint/eslint-plugin": "^7.5.0",
-    "@typescript-eslint/parser": "^7.5.0",
-    "@web/dev-server": "^0.4.3",
+    "@typescript-eslint/eslint-plugin": "^7.6.0",
+    "@typescript-eslint/parser": "^7.6.0",
+    "@web/dev-server": "^0.4.4",
     "@webcomponents/webcomponentsjs": "^2.8.0",
     "eslint": "^8.57.0",
     "lit-analyzer": "^2.0.3",
     "prettier": "^3.2.5",
     "rimraf": "^5.0.5",
-    "typescript": "~5.4.3"
+    "typescript": "~5.4.5"
   },
   "customElements": "custom-elements.json"
 }
