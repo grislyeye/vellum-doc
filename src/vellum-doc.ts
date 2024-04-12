@@ -26,6 +26,7 @@ export class VellumDocument extends LitElement {
 
       h1 {
         font: var(--index-level-1-font, bold 1.3em var(--font-family));
+        line-height: 1em;
         text-align: center;
       }
 
