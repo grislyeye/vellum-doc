@@ -2841,6 +2841,10 @@
         color: inherit;
         text-decoration: inherit;
       }
+
+      @media (max-width: 700px) {
+        display: none;
+      }
     }
 
     .scrollable {
@@ -2854,6 +2858,10 @@
       margin-left: calc(
         var(--index-width, var(--default-index-width)) + var(--gap) / 2
       );
+
+      @media (max-width: 700px) {
+        margin-left: 0;
+      }
     }
   `;
   VellumDocument = __decorateClass([
