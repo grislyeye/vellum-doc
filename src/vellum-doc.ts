@@ -98,7 +98,6 @@ export class VellumDocument extends LitElement {
   }
 
   override render() {
-    console.log('test')
     return html`
       <div id="index" class="scrollable">${this.renderIndex()}</div>
       <article id="document">
