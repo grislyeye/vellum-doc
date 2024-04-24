@@ -2777,6 +2777,7 @@
       });
     }
     render() {
+      console.log("test");
       return x`
       <div id="index" class="scrollable">${this.renderIndex()}</div>
       <article id="document">
@@ -2816,35 +2817,31 @@
       --font-family: var(--index-font-family, san-serif);
 
       font-size: var(--index-font-size, 15px);
+    }
 
-      h1 {
-        font: var(--index-level-1-font, bold 1.3em var(--font-family));
-        line-height: 1em;
-        text-align: center;
-      }
+    #index h1 {
+      font: var(--index-level-1-font, bold 1.3em var(--font-family));
+      line-height: 1em;
+      text-align: center;
+    }
 
-      h2 {
-        font: var(--index-level-2-font, bold 1.15em var(--font-family));
-      }
+    #index h2 {
+      font: var(--index-level-2-font, bold 1.15em var(--font-family));
+    }
 
-      h3 {
-        font: var(--index-level-3-font, 1em var(--font-family));
-        padding-left: 1.4em;
-      }
+    #index h3 {
+      font: var(--index-level-3-font, 1em var(--font-family));
+      padding-left: 1.4em;
+    }
 
-      h4 {
-        padding-left: 3em;
-        font: var(--index-level-4-font, 0.9em var(--font-family));
-      }
+    #index h4 {
+      padding-left: 3em;
+      font: var(--index-level-4-font, 0.9em var(--font-family));
+    }
 
-      a {
-        color: inherit;
-        text-decoration: inherit;
-      }
-
-      @media (max-width: 700px) {
-        display: none;
-      }
+    #index a {
+      color: inherit;
+      text-decoration: inherit;
     }
 
     .scrollable {
@@ -2858,9 +2855,15 @@
       margin-left: calc(
         var(--index-width, var(--default-index-width)) + var(--gap) / 2
       );
+    }
 
-      @media (max-width: 700px) {
+    @media (width < 700px) {
+      #document {
         margin-left: 0;
+      }
+
+      #index {
+        display: none;
       }
     }
   `;
