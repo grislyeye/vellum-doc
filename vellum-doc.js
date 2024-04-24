@@ -2777,7 +2777,6 @@
       });
     }
     render() {
-      console.log("test");
       return x`
       <div id="index" class="scrollable">${this.renderIndex()}</div>
       <article id="document">
