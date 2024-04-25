@@ -63,7 +63,7 @@ export class VellumDocument extends LitElement {
       );
     }
 
-    @media (width < 700px) {
+    @media (max-width: 700px) {
       #document {
         margin-left: 0;
       }
