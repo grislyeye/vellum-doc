@@ -19,6 +19,7 @@ export class VellumDocument extends LitElement {
       border-right: var(--index-divider-border, 1px solid);
       padding-right: calc(var(--gap, 0px) / 2);
       min-height: 100vh;
+      color: var(--index-color, 'inherit');
 
       --font-family: var(--index-font-family, san-serif);
 
