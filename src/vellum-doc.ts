@@ -17,7 +17,7 @@ export class VellumDocument extends LitElement {
     #index {
       width: var(--index-width, var(--default-index-width));
       border-right: var(--index-divider-border, 1px solid);
-      padding-right: calc(var(--gap) / 2);
+      padding-right: calc(var(--gap, 0px) / 2);
       min-height: 100vh;
 
       --font-family: var(--index-font-family, san-serif);
@@ -59,7 +59,7 @@ export class VellumDocument extends LitElement {
 
     #document {
       margin-left: calc(
-        var(--index-width, var(--default-index-width)) + var(--gap) / 2
+        var(--index-width, var(--default-index-width)) + var(--gap, 0px) / 2
       );
     }
 
