@@ -2854,7 +2854,7 @@
 
     #document {
       margin-left: calc(
-        var(--index-width, var(--default-index-width)) + var(--gap, 0px) / 2
+        var(--index-width, var(--default-index-width)) + var(--gap, 0px)
       );
     }
 
