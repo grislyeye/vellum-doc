@@ -44,7 +44,7 @@ Example HTML:
 document index, overriding styles for the index/document divided
 (`border-right`) or background colour.
 
-The element can be customized using the following CSS variables:
+The element can be customised using the following CSS variables:
 
 | Variable               | Description                                                                                                                                         | Default                            |
 | ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
