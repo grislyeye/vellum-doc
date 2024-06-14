@@ -70,3 +70,22 @@ vellum-doc::part(index) {
   padding-right: 10px;
 }
 ```
+
+### Headings
+
+By default `<vellum-doc>` will only use the `h1`-`h4` headings for the document
+outline. The `headings` attribute takes a comma-separated list of css selectors,
+which modifies the HTML elements used for the index.
+
+For example:
+
+```html
+<vellum-doc headings="h1,h3">
+  <h1>Commodi</h1>
+  <h2>Heading 2</h2>
+  <h3>Heading 3</h3>
+</vellum-doc>
+```
+
+Will only displaying the 1st and 3rd-level headers in the index. Ideally, only
+css selectors targeting headers should be passed into this attribute.
