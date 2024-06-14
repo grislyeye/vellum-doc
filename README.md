@@ -35,21 +35,22 @@ npm i vellum-doc
 </vellum-doc>
 ```
 
+#### Styling
+
+`<vellum-doc>` exposes the `index` **part**, which can be used to style the
+document index, overriding styles for the index/document divided
+(`border-right`) or background colour.
+
 The element can be customized using the following CSS variables:
 
-| Variable                 | Description                                                                                                                                         | Default                            |
-| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
-| `--index-width`          | Width of the index sidebar.                                                                                                                         | `300px`                            |
-| `--index-divider-border` | Border style of the index/document divider (as the [border](https://developer.mozilla.org/en-US/docs/Web/CSS/border)) declaration                   | `1px solid`                        |
-| `--index-color`          | Font colour of the index headings, as defined by the [`color` property](https://developer.mozilla.org/en-US/docs/Web/CSS/color)).                   | `inherit`                          |
-| `--index-font-size`      | Base font size for the index.                                                                                                                       | `15px`                             |
-| `--index-background`     | Background style for the index (as defined by the [`background` property](https://developer.mozilla.org/en-US/docs/Web/CSS/background)).            | `inherit`                          |
-| `--gap`                  | Gap between index and document.                                                                                                                     | `0`                                |
-| `--index-font-family`    | Font family of the document index.                                                                                                                  | `san-serif`                        |
-| `--index-level-1-font`   | Font style of the index links to level 1 headers (`h1`) as defined by the [`font` property](https://developer.mozilla.org/en-US/docs/Web/CSS/font). | `1.3em bold` with inherited font.  |
-| `--index-level-2-font`   | Font style of the index links to level 2 headers (`h2`) as defined by the [`font` property](https://developer.mozilla.org/en-US/docs/Web/CSS/font). | `1.15em bold` with inherited font. |
-| `--index-level-3-font`   | Font style of the index links to level 3 headers (`h3`) as defined by the [`font` property](https://developer.mozilla.org/en-US/docs/Web/CSS/font). | `1em` with inherited font.         |
-| `--index-level-4-font`   | Font style of the index links to level 4 headers (`h4`) as defined by the [`font` property](https://developer.mozilla.org/en-US/docs/Web/CSS/font). | `0.9em` with inherited font.       |
+| Variable               | Description                                                                                                                                         | Default                            |
+| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
+| `--index-width`        | Width of the index sidebar.                                                                                                                         | `300px`                            |
+| `--gap`                | Gap between index and document.                                                                                                                     | `0`                                |
+| `--index-level-1-font` | Font style of the index links to level 1 headers (`h1`) as defined by the [`font` property](https://developer.mozilla.org/en-US/docs/Web/CSS/font). | `1.3em bold` with inherited font.  |
+| `--index-level-2-font` | Font style of the index links to level 2 headers (`h2`) as defined by the [`font` property](https://developer.mozilla.org/en-US/docs/Web/CSS/font). | `1.15em bold` with inherited font. |
+| `--index-level-3-font` | Font style of the index links to level 3 headers (`h3`) as defined by the [`font` property](https://developer.mozilla.org/en-US/docs/Web/CSS/font). | `1em` with inherited font.         |
+| `--index-level-4-font` | Font style of the index links to level 4 headers (`h4`) as defined by the [`font` property](https://developer.mozilla.org/en-US/docs/Web/CSS/font). | `0.9em` with inherited font.       |
 
 ## Setup
 

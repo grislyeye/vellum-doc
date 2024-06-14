@@ -16,35 +16,30 @@ export class VellumDocument extends LitElement {
 
     #index {
       width: var(--index-width, var(--default-index-width));
-      border-right: var(--index-divider-border, 1px solid);
+      border-right: 1px solid;
       padding-right: calc(var(--gap, 0px) / 2);
       min-height: 100vh;
-      color: var(--index-color, 'inherit');
-      background: var(--index-background, 'inherit');
-
-      --font-family: var(--index-font-family, san-serif);
-
-      font-size: var(--index-font-size, 15px);
+      font-size: 15px;
     }
 
     #index h1 {
-      font: var(--index-level-1-font, bold 1.3em var(--font-family));
+      font: var(--index-level-1-font, bold 1.3em inherit);
       line-height: 1em;
       text-align: center;
     }
 
     #index h2 {
-      font: var(--index-level-2-font, bold 1.15em var(--font-family));
+      font: var(--index-level-2-font, bold 1.15em inherit);
     }
 
     #index h3 {
-      font: var(--index-level-3-font, 1em var(--font-family));
+      font: var(--index-level-3-font, 1em inherit);
       padding-left: 1.4em;
     }
 
     #index h4 {
       padding-left: 3em;
-      font: var(--index-level-4-font, 0.9em var(--font-family));
+      font: var(--index-level-4-font, 0.9em inherit);
     }
 
     #index a {
@@ -101,7 +96,10 @@ export class VellumDocument extends LitElement {
 
   override render() {
     return html`
-      <div id="index" class="scrollable">${this.renderIndex()}</div>
+      <div id="index" part="index" class="scrollable">
+        ${this.renderIndex()}
+      </div>
+
       <article id="document">
         <slot></slot>
       </article>
