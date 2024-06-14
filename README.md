@@ -54,3 +54,18 @@ The element can be customised using the following CSS variables:
 | `--index-level-2-font` | Font style of the index links to level 2 headers (`h2`) as defined by the [`font` property](https://developer.mozilla.org/en-US/docs/Web/CSS/font). | `1.15em bold` with inherited font. |
 | `--index-level-3-font` | Font style of the index links to level 3 headers (`h3`) as defined by the [`font` property](https://developer.mozilla.org/en-US/docs/Web/CSS/font). | `1em` with inherited font.         |
 | `--index-level-4-font` | Font style of the index links to level 4 headers (`h4`) as defined by the [`font` property](https://developer.mozilla.org/en-US/docs/Web/CSS/font). | `0.9em` with inherited font.       |
+
+For example:
+
+```css
+vellum-doc {
+  --gap: 50px;
+  --index-level-1-font: bold 2.5em Alegreya;
+}
+
+vellum-doc::part(index) {
+  border-right: dashed red;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+```
