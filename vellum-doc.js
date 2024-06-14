@@ -2819,23 +2819,23 @@
     }
 
     #index h1 {
-      font: var(--index-level-1-font, bold 1.3em inherit);
+      font: var(--index-level-1-font, bold 1.3em 'inherit');
       line-height: 1em;
       text-align: center;
     }
 
     #index h2 {
-      font: var(--index-level-2-font, bold 1.15em inherit);
+      font: var(--index-level-2-font, bold 1.15em 'inherit');
     }
 
     #index h3 {
-      font: var(--index-level-3-font, 1em inherit);
+      font: var(--index-level-3-font, 1em 'inherit');
       padding-left: 1.4em;
     }
 
     #index h4 {
       padding-left: 3em;
-      font: var(--index-level-4-font, 0.9em inherit);
+      font: var(--index-level-4-font, 0.9em 'inherit');
     }
 
     #index a {
