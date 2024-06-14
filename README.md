@@ -1,6 +1,7 @@
 # \<vellum-doc>
 
-A simple document web component for web publishing. Creates and index
+A simple document web component for web publishing. Takes HTML and adds a
+scrollable index pane based on the document outline.
 
 **[Demo](https://grislyeye.github.io/vellum-doc/)** |
 **[Developer Guide](CONTRIBUTING.md)**
