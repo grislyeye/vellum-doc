@@ -50,6 +50,7 @@ export class VellumDocument extends LitElement {
 
     .scrollable {
       width: var(--index-width, var(--default-index-width));
+      min-height: 100vh;
       max-height: 100vh;
       position: fixed;
       top: 0;
@@ -57,7 +58,9 @@ export class VellumDocument extends LitElement {
     }
 
     #index {
+      min-height: 100vh;
       border-right: 1px solid;
+      padding-bottom: 1em;
     }
 
     @media (max-width: 700px) {
