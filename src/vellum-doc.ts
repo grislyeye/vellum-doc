@@ -20,34 +20,6 @@ export class VellumDocument extends LitElement {
       font-size: 15px;
     }
 
-    #sidebar h1 {
-      font: var(--index-level-1-font, bold 1.3em 'inherit');
-      margin: 0;
-      padding-top: 1em;
-      padding-bottom: 0.5em;
-      line-height: 1em;
-      text-align: center;
-    }
-
-    #sidebar h2 {
-      font: var(--index-level-2-font, bold 1.15em 'inherit');
-    }
-
-    #sidebar h3 {
-      font: var(--index-level-3-font, 1em 'inherit');
-      padding-left: 1.4em;
-    }
-
-    #sidebar h4 {
-      padding-left: 3em;
-      font: var(--index-level-4-font, 0.9em 'inherit');
-    }
-
-    #sidebar a {
-      color: inherit;
-      text-decoration: inherit;
-    }
-
     .scrollable {
       width: var(--index-width, var(--default-index-width));
       min-height: 100vh;
@@ -61,6 +33,34 @@ export class VellumDocument extends LitElement {
       min-height: 100vh;
       border-right: 1px solid;
       padding-bottom: 1em;
+    }
+
+    #index h1 {
+      font: var(--index-level-1-font, bold 1.3em 'inherit');
+      margin: 0;
+      padding-top: 1em;
+      padding-bottom: 0.5em;
+      line-height: 1em;
+      text-align: center;
+    }
+
+    #index h2 {
+      font: var(--index-level-2-font, bold 1.15em 'inherit');
+    }
+
+    #index h3 {
+      font: var(--index-level-3-font, 1em 'inherit');
+      padding-left: 1.4em;
+    }
+
+    #index h4 {
+      padding-left: 3em;
+      font: var(--index-level-4-font, 0.9em 'inherit');
+    }
+
+    #index a {
+      color: inherit;
+      text-decoration: inherit;
     }
 
     @media (max-width: 700px) {
