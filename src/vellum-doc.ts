@@ -97,21 +97,6 @@ export class VellumDocument extends LitElement {
     })
   }
 
-  anchorHeadings() {
-    this.headings.forEach(heading => {
-      const spacing = document.createTextNode(' ')
-      heading.append(spacing)
-
-      const anchor = document.createElement('a')
-      anchor.href = `#${heading.id}`
-      anchor.innerHTML = '#'
-      anchor.className = 'anchor'
-      anchor.title = heading.textContent ? heading.textContent : ''
-
-      heading.append(anchor)
-    })
-  }
-
   override render() {
     return html`
       <div id="sidebar">
@@ -140,10 +125,6 @@ export class VellumDocument extends LitElement {
       ([heading, id]: [HTMLElement, string]) =>
         html`<a href="#${id}">${heading}</a>`
     )
-  }
-
-  override updated() {
-    this.anchorHeadings()
   }
 }
 
