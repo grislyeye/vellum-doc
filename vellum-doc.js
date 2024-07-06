@@ -2740,18 +2740,6 @@
         }
       });
     }
-    anchorHeadings() {
-      this.headings.forEach((heading) => {
-        const spacing = document.createTextNode(" ");
-        heading.append(spacing);
-        const anchor = document.createElement("a");
-        anchor.href = `#${heading.id}`;
-        anchor.innerHTML = "#";
-        anchor.className = "anchor";
-        anchor.title = heading.textContent ? heading.textContent : "";
-        heading.append(anchor);
-      });
-    }
     render() {
       return x`
       <div id="sidebar">
@@ -2776,9 +2764,6 @@
       return index.map(
         ([heading, id]) => x`<a href="#${id}">${heading}</a>`
       );
-    }
-    updated() {
-      this.anchorHeadings();
     }
   };
   VellumDocument.styles = i`
