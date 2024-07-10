@@ -2875,7 +2875,7 @@
         margin-left: 0;
       }
 
-      #index {
+      #sidebar {
         display: none;
       }
     }
