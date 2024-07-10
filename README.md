@@ -55,7 +55,7 @@ Anchor style links can be dynamically added to document headers using the
 ### Styling
 
 `<vellum-doc>` exposes the `index` **part**, which can be used to style the
-document index, overriding styles for the index/document divided
+document index, overriding styles for the index/document divider
 (`border-right`) or background colour.
 
 The element can be customised using the following CSS variables:
