@@ -1,7 +1,7 @@
 # \<vellum-doc>
 
-A simple document custom element for web publishing. Enriches plain HTML with an
-index pane based on the document outline.
+A simple custom element for web publishing. Enriches plain HTML with an index
+pane based on the document outline.
 
 **[Demo](https://grislyeye.github.io/vellum-doc/)** |
 **[Developer Guide](CONTRIBUTING.md)**
