@@ -1,5 +1,5 @@
 import { LitElement, html, css } from 'lit'
-import { customElement } from 'lit/decorators.js'
+import { customElement, property } from 'lit/decorators.js'
 import { slugifyWithCounter } from '@sindresorhus/slugify'
 
 @customElement('vellum-doc')
@@ -74,6 +74,9 @@ export class VellumDocument extends LitElement {
     }
   `
 
+  @property({ type: Boolean })
+  anchors?: boolean
+
   private slugify = slugifyWithCounter()
 
   get headings(): HTMLElement[] {
@@ -94,6 +97,21 @@ export class VellumDocument extends LitElement {
 
         heading.id = newId
       }
+    })
+  }
+
+  anchorHeadings() {
+    this.headings.forEach(heading => {
+      const spacing = document.createTextNode(' ')
+      heading.append(spacing)
+
+      const anchor = document.createElement('a')
+      anchor.href = `#${heading.id}`
+      anchor.innerHTML = '#'
+      anchor.className = 'anchor'
+      anchor.title = heading.textContent ? heading.textContent : ''
+
+      heading.append(anchor)
     })
   }
 
@@ -125,6 +143,10 @@ export class VellumDocument extends LitElement {
       ([heading, id]: [HTMLElement, string]) =>
         html`<a href="#${id}">${heading}</a>`
     )
+  }
+
+  override updated() {
+    if (this.anchors) this.anchorHeadings()
   }
 }
 

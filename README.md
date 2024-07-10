@@ -39,6 +39,19 @@ Example HTML:
 </vellum-doc>
 ```
 
+Anchor style links can be dynamically added to document headers using the
+`anchors` attribute:
+
+```html
+<script type="module">
+  import 'vellum-doc/vellum-doc.js'
+</script>
+
+<vellum-doc anchors>
+  <h1>Commodi</h1>
+</vellum-doc>
+```
+
 ### Styling
 
 `<vellum-doc>` exposes the `index` **part**, which can be used to style the
