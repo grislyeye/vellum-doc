@@ -68,7 +68,7 @@ export class VellumDocument extends LitElement {
         margin-left: 0;
       }
 
-      #index {
+      #sidebar {
         display: none;
       }
     }
