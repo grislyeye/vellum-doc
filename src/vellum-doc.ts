@@ -1,6 +1,7 @@
 import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import { slugifyWithCounter } from '@sindresorhus/slugify'
+import '@lion/ui/define/lion-drawer.js'
 
 @customElement('vellum-doc')
 export class VellumDocument extends LitElement {
@@ -67,10 +68,6 @@ export class VellumDocument extends LitElement {
       #document {
         margin-left: 0;
       }
-
-      #sidebar {
-        display: none;
-      }
     }
   `
 
@@ -117,11 +114,18 @@ export class VellumDocument extends LitElement {
 
   override render() {
     return html`
-      <div id="sidebar">
-        <div class="scrollable">
-          <div id="index" part="index">${this.renderIndex()}</div>
+      <lion-drawer>
+        <button slot="invoker">
+          OPEN
+        </button>
+        <div slot="content">
+          <div id="sidebar">
+            <div class="scrollable">
+              <div id="index" part="index">${this.renderIndex()}</div>
+            </div>
+          </div>
         </div>
-      </div>
+      </lion-drawer>
 
       <article id="document">
         <slot></slot>
