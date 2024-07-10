@@ -1,26 +1,32 @@
 # \<vellum-doc>
 
-A simple document web component for web publishing. Takes HTML and adds a
-scrollable index pane based on the document outline.
+A simple document custom element for web publishing. Enriches plain HTML with an
+index pane based on the document outline.
 
 **[Demo](https://grislyeye.github.io/vellum-doc/)** |
 **[Developer Guide](CONTRIBUTING.md)**
 
 ## Usage
 
-To install:
+Include the `<script>` in your markup:
 
-```bash
-npm i vellum-doc
+```html
+<script
+  type="module"
+  src="https://www.unpkg.com/vellum-doc@0.8.0/vellum-doc.js"></script>
 ```
 
-Example HTML:
+Or, if you host the script as part of your project (recommended):
 
 ```html
 <script type="module">
   import 'vellum-doc/vellum-doc.js'
 </script>
+```
 
+Example:
+
+```html
 <vellum-doc>
   <h1>Commodi</h1>
   <p>
@@ -39,14 +45,12 @@ Example HTML:
 </vellum-doc>
 ```
 
-Anchor style links can be dynamically added to document headers using the
-`anchors` attribute:
+### Anchors
+
+Anchor links can be dynamically added to document headers using the `anchors`
+attribute:
 
 ```html
-<script type="module">
-  import 'vellum-doc/vellum-doc.js'
-</script>
-
 <vellum-doc anchors>
   <h1>Commodi</h1>
 </vellum-doc>
@@ -54,11 +58,12 @@ Anchor style links can be dynamically added to document headers using the
 
 ### Styling
 
-`<vellum-doc>` exposes the `index` **part**, which can be used to style the
-document index, overriding styles for the index/document divider
-(`border-right`) or background colour.
+`<vellum-doc>` exposes the `index`
+[part](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_shadow_parts), which
+can be used to style the document index, overriding styles for the
+index/document divider (`border-right`) or background colour.
 
-The element can be customised using the following CSS variables:
+The element can also be customised using the following CSS variables:
 
 | Variable               | Description                                                                                                                                         | Default                            |
 | ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
