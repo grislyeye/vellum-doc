@@ -115,9 +115,7 @@ export class VellumDocument extends LitElement {
   override render() {
     return html`
       <lion-drawer>
-        <button slot="invoker">
-          OPEN
-        </button>
+        <button slot="invoker">OPEN</button>
         <div slot="content">
           <div id="sidebar">
             <div class="scrollable">
