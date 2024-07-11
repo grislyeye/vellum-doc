@@ -1,5 +1,8 @@
 # Developer Guide
 
+You can start getting involved by picking up one of the
+[help wanted issues](https://github.com/grislyeye/vellum-doc/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22+no%3Aassignee).
+
 Install dependencies:
 
 ```bash
