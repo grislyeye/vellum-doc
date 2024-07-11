@@ -95,7 +95,7 @@ Prettier has not been configured to run when committing files, but this can be
 added with Husky and `pretty-quick`. See the [prettier.io](https://prettier.io/)
 site for instructions.
 
-You can fix automatically fix most formatting problems by running:
+You can automatically fix most formatting problems by running:
 
 ```shell
 npm run lint:fix
