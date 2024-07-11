@@ -5,7 +5,8 @@ pane based on the document outline. Inspired by
 [Docsify](https://docsify.js.org).
 
 **[Demo](https://grislyeye.github.io/vellum-doc/)** |
-**[Developer Guide](CONTRIBUTING.md)**
+**[Developer Guide](CONTRIBUTING.md)** |
+**[Roadmap](https://github.com/grislyeye/vellum-doc/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement)**
 
 ## Usage
 
