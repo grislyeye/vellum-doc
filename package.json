@@ -7,7 +7,7 @@
   "type": "module",
   "scripts": {
     "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx && npx prettier . --check",
-    "lint:format": "npx prettier . --write",
+    "lint:fix": "npx prettier . --write",
     "clean": "rm -rf docs vellum-doc.js vellum-doc.js.map",
     "build": "npm run clean && npm run build:prod",
     "build:prod": "npm run build:analyze && tsc && esbuild src/vellum-doc.ts --bundle --minify --sourcemap=external --outfile=vellum-doc.js",

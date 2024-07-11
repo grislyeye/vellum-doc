@@ -44,10 +44,10 @@ To run the dev server and open the project in a new browser tab:
 npm run serve
 ```
 
-There is a development HTML file located at `/dev/index.html` that you can view
-at http://localhost:8000/dev/index.html. Note that this command will serve your
-code using Lit's development mode (with more verbose errors). To serve your code
-against Lit's production mode, use `npm run serve:prod`.
+There is a demo HTML file located at `/index.html` that you can view at
+http://localhost:8000/. Note that this command will serve your code using Lit's
+development mode (with more verbose errors). To serve your code against Lit's
+production mode, use `npm run serve:prod`.
 
 ## Editing
 
@@ -94,3 +94,9 @@ pre-configured according to the Lit's style. You can change this in
 Prettier has not been configured to run when committing files, but this can be
 added with Husky and `pretty-quick`. See the [prettier.io](https://prettier.io/)
 site for instructions.
+
+You can fix automatically fix most formatting problems by running:
+
+```shell
+npm run lint:fix
+```
