@@ -70,7 +70,6 @@ The element can also be customised using the following CSS variables:
 | Variable               | Description                                                                                                                                         | Default                            |
 | ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
 | `--index-width`        | Width of the index sidebar.                                                                                                                         | `300px`                            |
-| `--gap`                | Gap between index and document.                                                                                                                     | `0`                                |
 | `--index-level-1-font` | Font style of the index links to level 1 headers (`h1`) as defined by the [`font` property](https://developer.mozilla.org/en-US/docs/Web/CSS/font). | `1.3em bold` with inherited font.  |
 | `--index-level-2-font` | Font style of the index links to level 2 headers (`h2`) as defined by the [`font` property](https://developer.mozilla.org/en-US/docs/Web/CSS/font). | `1.15em bold` with inherited font. |
 | `--index-level-3-font` | Font style of the index links to level 3 headers (`h3`) as defined by the [`font` property](https://developer.mozilla.org/en-US/docs/Web/CSS/font). | `1em` with inherited font.         |
@@ -80,7 +79,6 @@ For example:
 
 ```css
 vellum-doc {
-  --gap: 50px;
   --index-level-1-font: bold 2.5em Alegreya;
 }
 
