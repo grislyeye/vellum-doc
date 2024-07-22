@@ -15,26 +15,22 @@ export class VellumDocument extends LitElement {
       --default-index-width: 300px;
     }
 
-    #sidebar {
-      float: left;
-      min-width: var(--index-width, var(--default-index-width));
-      font-size: 15px;
+    .invoker {
     }
 
-    .scrollable {
+    #index {
       width: var(--index-width, var(--default-index-width));
+      border-right: 1px solid;
+      padding-bottom: 1em;
+    }
+
+    /* .scrollable {
       min-height: 100vh;
       max-height: 100vh;
       position: fixed;
       top: 0;
       overflow-y: auto;
-    }
-
-    #index {
-      min-height: 100vh;
-      border-right: 1px solid;
-      padding-bottom: 1em;
-    }
+    } */
 
     #index h1 {
       font: bold 1.3em inherit;
@@ -115,14 +111,10 @@ export class VellumDocument extends LitElement {
 
   override render() {
     return html`
-      <lion-drawer>
-        <button slot="invoker">OPEN</button>
+      <lion-drawer opened hide>
+        <button class="invoker" slot="invoker">OPEN</button>
         <div slot="content">
-          <div id="sidebar">
-            <div class="scrollable">
-              <div id="index" part="index">${this.renderIndex()}</div>
-            </div>
-          </div>
+          <div id="index" class="scrollable" part="index">${this.renderIndex()}</div>
         </div>
       </lion-drawer>
 
