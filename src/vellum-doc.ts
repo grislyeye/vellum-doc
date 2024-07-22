@@ -55,7 +55,7 @@ export class VellumDocument extends LitElement {
     }
 
     #document {
-      padding-left: var(--index-width, var(--default-index-width));
+      margin-left: var(--index-width, var(--default-index-width));
     }
 
     @media (max-width: 700px) {
@@ -72,6 +72,14 @@ export class VellumDocument extends LitElement {
   @property({ type: Boolean })
   anchors?: boolean
 
+  // @query('.drawer')
+  private get drawer(): Element | null {
+    console.log("bar")
+    console.log(this.renderRoot)
+    console.log(this.renderRoot.querySelector('.drawer'))
+    return this.renderRoot.querySelector('.drawer')
+  }
+
   private slugify = slugifyWithCounter()
 
   get headings(): HTMLElement[] {
@@ -81,6 +89,7 @@ export class VellumDocument extends LitElement {
   override connectedCallback() {
     super.connectedCallback()
     this.labelHeaders()
+    if (this.drawer) console.log(this.drawer)
   }
 
   labelHeaders() {
@@ -113,7 +122,7 @@ export class VellumDocument extends LitElement {
 
   override render() {
     return html`
-      <elix-drawer-with-grip id="drawer" opened>
+      <elix-drawer-with-grip id="drawer" class="drawer" opened>
           <div id="index">
             ${this.renderIndex()}
           </div>
