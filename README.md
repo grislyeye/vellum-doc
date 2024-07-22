@@ -1,8 +1,10 @@
 # \<vellum-doc>
 
-A simple custom element for web publishing. Enriches plain HTML with an index
-pane based on the document outline. Inspired by
-[Docsify](https://docsify.js.org).
+A custom element to turn plain HTML into rich documents, inspired by
+[Docsify](https://docsify.js.org). Features include:
+
+- Document index pane
+- Anchor links (optional)
 
 **[Demo](https://grislyeye.github.io/vellum-doc/)** |
 **[Developer Guide](CONTRIBUTING.md)** |
@@ -61,16 +63,15 @@ attribute:
 ### Styling
 
 `<vellum-doc>` exposes CSS custom properties and shadow parts that can be used
-to style the document index, for example the index divider (`border-right`) or
-background colour.
+to style the document index.
 
-The element can also be customised using the following CSS variables:
+Supports the following CSS variables:
 
 | Variable        | Description                 | Default |
 | --------------- | --------------------------- | ------- |
 | `--index-width` | Width of the index sidebar. | `300px` |
 
-The element can also be customised using the following
+Supports the following
 [shadow parts](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_shadow_parts):
 
 | Shadow Part | Description                                                                                          |
