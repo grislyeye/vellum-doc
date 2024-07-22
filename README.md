@@ -60,31 +60,41 @@ attribute:
 
 ### Styling
 
-`<vellum-doc>` exposes the `index`
-[part](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_shadow_parts), which
-can be used to style the document index, overriding styles for the
-index/document divider (`border-right`) or background colour.
+`<vellum-doc>` exposes CSS custom properties and shadow parts that can be used
+to style the document index, for example the index divider (`border-right`) or
+background colour.
 
 The element can also be customised using the following CSS variables:
 
-| Variable               | Description                                                                                                                                         | Default                            |
-| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
-| `--index-width`        | Width of the index sidebar.                                                                                                                         | `300px`                            |
-| `--index-level-1-font` | Font style of the index links to level 1 headers (`h1`) as defined by the [`font` property](https://developer.mozilla.org/en-US/docs/Web/CSS/font). | `1.3em bold` with inherited font.  |
-| `--index-level-2-font` | Font style of the index links to level 2 headers (`h2`) as defined by the [`font` property](https://developer.mozilla.org/en-US/docs/Web/CSS/font). | `1.15em bold` with inherited font. |
-| `--index-level-3-font` | Font style of the index links to level 3 headers (`h3`) as defined by the [`font` property](https://developer.mozilla.org/en-US/docs/Web/CSS/font). | `1em` with inherited font.         |
-| `--index-level-4-font` | Font style of the index links to level 4 headers (`h4`) as defined by the [`font` property](https://developer.mozilla.org/en-US/docs/Web/CSS/font). | `0.9em` with inherited font.       |
+| Variable        | Description                 | Default |
+| --------------- | --------------------------- | ------- |
+| `--index-width` | Width of the index sidebar. | `300px` |
+
+The element can also be customised using the following
+[shadow parts](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_shadow_parts):
+
+| Shadow Part | Description                                                                                          |
+| ----------- | ---------------------------------------------------------------------------------------------------- |
+| `index`     | The index pane container. Can be used to set padding, style the index divider (`border-right`), etc. |
+| `index-h1`  | `h1` items in the index.                                                                             |
+| `index-h2`  | As above, but for `h1` items.                                                                        |
+| `index-h3`  | As above, but for `h3` items.                                                                        |
+| `index-h4`  | As above, but for `h4` items.                                                                        |
 
 For example:
 
 ```css
 vellum-doc {
-  --index-level-1-font: bold 2.5em Alegreya;
+  --index-width: 250px;
 }
 
 vellum-doc::part(index) {
   border-right: dashed red;
   padding-left: 10px;
   padding-right: 10px;
+}
+
+vellum-doc::part(index-h1) {
+  color: red;
 }
 ```
