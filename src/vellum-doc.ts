@@ -37,7 +37,7 @@ export class VellumDocument extends LitElement {
     }
 
     #index h1 {
-      font: var(--index-level-1-font, bold 1.3em 'inherit');
+      font: bold 1.3em inherit;
       margin: 0;
       padding-top: 1em;
       padding-bottom: 0.5em;
@@ -46,11 +46,11 @@ export class VellumDocument extends LitElement {
     }
 
     #index h2 {
-      font: var(--index-level-2-font, bold 1.15em 'inherit');
+      font: bold 1.15em inherit;
     }
 
     #index h3 {
-      font: var(--index-level-3-font, 1em 'inherit');
+      font: 1em inherit;
       padding-left: 1.4em;
     }
 
@@ -93,6 +93,7 @@ export class VellumDocument extends LitElement {
           : Math.random().toString(36).slice(2)
 
         heading.id = newId
+        heading.part.add(`index-${heading.localName}`)
       }
     })
   }
