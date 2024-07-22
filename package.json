@@ -32,9 +32,10 @@
     "lit": "^3.1.4"
   },
   "devDependencies": {
+    "@custom-elements-manifest/analyzer": "^0.10.2",
     "@typescript-eslint/eslint-plugin": "^7.7.1",
     "@typescript-eslint/parser": "^7.7.1",
-    "@custom-elements-manifest/analyzer": "^0.10.2",
+    "elix": "^15.0.1",
     "esbuild": "^0.21.5",
     "lit-analyzer": "^2.0.3",
     "prettier": "^3.3.2",

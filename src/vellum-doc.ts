@@ -2,6 +2,8 @@ import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import { slugifyWithCounter } from '@sindresorhus/slugify'
 
+import 'elix/define/DrawerWithGrip.js';
+
 @customElement('vellum-doc')
 export class VellumDocument extends LitElement {
   static override styles = css`
@@ -14,25 +16,14 @@ export class VellumDocument extends LitElement {
       --default-index-width: 300px;
     }
 
-    #sidebar {
-      float: left;
-      min-width: var(--index-width, var(--default-index-width));
-      font-size: 15px;
-    }
-
-    .scrollable {
+    #drawer {
       width: var(--index-width, var(--default-index-width));
       min-height: 100vh;
-      max-height: 100vh;
-      position: fixed;
-      top: 0;
-      overflow-y: auto;
     }
 
     #index {
-      min-height: 100vh;
-      border-right: 1px solid;
-      padding-bottom: 1em;
+      font-size: 15px;
+      padding: 1em;
     }
 
     #index h1 {
@@ -61,6 +52,10 @@ export class VellumDocument extends LitElement {
     #index a {
       color: inherit;
       text-decoration: inherit;
+    }
+
+    #document {
+      padding-left: var(--index-width, var(--default-index-width));
     }
 
     @media (max-width: 700px) {
@@ -118,11 +113,11 @@ export class VellumDocument extends LitElement {
 
   override render() {
     return html`
-      <div id="sidebar">
-        <div class="scrollable">
-          <div id="index" part="index">${this.renderIndex()}</div>
-        </div>
-      </div>
+      <elix-drawer-with-grip id="drawer" opened>
+          <div id="index">
+            ${this.renderIndex()}
+          </div>
+      </elix-drawer-with-grip>
 
       <article id="document">
         <slot></slot>
