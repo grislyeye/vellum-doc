@@ -1,4 +1,4 @@
-import { LitElement, html, css } from 'lit'
+import { LitElement, html, css, PropertyValues } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import { slugifyWithCounter } from '@sindresorhus/slugify'
 
@@ -19,25 +19,19 @@ export class VellumDocument extends LitElement {
       --default-index-width: 300px;
     }
 
-    #sidebar {
-      float: left;
-      min-width: var(--index-width, var(--default-index-width));
-      font-size: 15px;
+    #opener {
+      position: sticky;
     }
 
-    .scrollable {
-      width: var(--index-width, var(--default-index-width));
-      min-height: 100vh;
-      max-height: 100vh;
-      position: fixed;
-      top: 0;
-      overflow-y: auto;
+    #drawer {
+      --size: var(--index-width, var(--default-index-width));
     }
 
     #index {
       min-height: 100vh;
       border-right: 1px solid;
       padding-bottom: 1em;
+      background: white;
     }
 
     #index h1 {
@@ -68,6 +62,10 @@ export class VellumDocument extends LitElement {
       text-decoration: inherit;
     }
 
+    #document {
+      margin-left: var(--index-width, var(--default-index-width));
+    }
+
     @media (max-width: 700px) {
       #document {
         margin-left: 0;
@@ -88,23 +86,25 @@ export class VellumDocument extends LitElement {
     return Array.from(this.querySelectorAll('h1, h2, h3, h4'))
   }
 
+  get drawer(): SlDrawer | null {
+    return this.shadowRoot!.querySelector('#drawer')
+  }
+
   override connectedCallback() {
     super.connectedCallback()
     this.labelHeaders()
   }
 
-  override firstUpdated() {
-    const drawer: SlDrawer | null = this.shadowRoot!.querySelector('.drawer-placement-start')
-    console.log(this.renderRoot)
-    console.log(drawer)
+  protected override firstUpdated() {
+    this.drawer!.addEventListener('sl-request-close', event => {
+      if (event.detail.source === 'overlay') {
+        event.preventDefault();
+      }
+    });
+  }
 
-    if (drawer) {
-      const openButton = drawer.nextElementSibling;
-      const closeButton = drawer.querySelector('sl-button[variant="primary"]');
-
-      openButton!.addEventListener('click', () => drawer.show())
-      closeButton!.addEventListener('click', () => drawer.hide());
-    }
+  showDrawer() {
+    this.drawer?.show()
   }
 
   labelHeaders() {
@@ -137,13 +137,12 @@ export class VellumDocument extends LitElement {
 
   override render() {
     return html`
-      <sl-drawer label="Drawer" placement="start" class="drawer-placement-start">
+      <sl-drawer id="drawer" placement="start" no-header open>
         <div id="index" part="index">${this.renderIndex()}</div>
-        <sl-button slot="footer" variant="primary">Close</sl-button>
       </sl-drawer>
 
       <article id="document">
-        <sl-button>Open Drawer</sl-button>
+        <sl-button id="opener" @click="${this.showDrawer}">Open Drawer</sl-button>
         <slot></slot>
       </article>
     `
