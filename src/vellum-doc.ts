@@ -1,7 +1,6 @@
 import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import { slugifyWithCounter } from '@sindresorhus/slugify'
-import { LionDrawer } from '@lion/ui'
 
 import '@lion/ui/define/lion-drawer.js'
 
@@ -85,7 +84,8 @@ export class VellumDocument extends LitElement {
     return Array.from(this.querySelectorAll('h1, h2, h3, h4'))
   }
 
-  get drawer(): LionDrawer | null {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  get drawer(): any | null {
     return this.renderRoot.querySelector('#drawer')
   }
 
