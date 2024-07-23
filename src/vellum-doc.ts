@@ -1,6 +1,8 @@
 import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import { slugifyWithCounter } from '@sindresorhus/slugify'
+import { LionDrawer } from '@lion/ui'
+
 import '@lion/ui/define/lion-drawer.js'
 
 @customElement('vellum-doc')
@@ -15,22 +17,19 @@ export class VellumDocument extends LitElement {
       --default-index-width: 300px;
     }
 
-    .invoker {
-    }
-
     #index {
       width: var(--index-width, var(--default-index-width));
       border-right: 1px solid;
       padding-bottom: 1em;
     }
 
-    /* .scrollable {
+    .scrollable {
       min-height: 100vh;
       max-height: 100vh;
       position: fixed;
       top: 0;
       overflow-y: auto;
-    } */
+    }
 
     #index h1 {
       font: bold 1.3em inherit;
@@ -59,12 +58,6 @@ export class VellumDocument extends LitElement {
       color: inherit;
       text-decoration: inherit;
     }
-
-    @media (max-width: 700px) {
-      #document {
-        margin-left: 0;
-      }
-    }
   `
 
   @property({ type: Boolean })
@@ -79,6 +72,8 @@ export class VellumDocument extends LitElement {
   override connectedCallback() {
     super.connectedCallback()
     this.labelHeaders()
+    const checkIndexVisibility = this.checkIndexVisibility.bind(this);
+    window.addEventListener('resize', checkIndexVisibility)
   }
 
   labelHeaders() {
@@ -109,10 +104,21 @@ export class VellumDocument extends LitElement {
     })
   }
 
+  checkIndexVisibility() {
+    const drawer: LionDrawer | null = this.renderRoot.querySelector('#drawer')
+    console.log(drawer.opened)
+    if (window.innerWidth < 700 && drawer && drawer.opened) {
+      console.log('open')
+      drawer.toggle()
+    } else if (drawer && !drawer.opened) {
+      console.log('close')
+      drawer.toggle()
+    }
+  }
+
   override render() {
     return html`
-      <lion-drawer opened hide>
-        <button class="invoker" slot="invoker">OPEN</button>
+      <lion-drawer id="drawer">
         <div slot="content">
           <div id="index" class="scrollable" part="index">${this.renderIndex()}</div>
         </div>
