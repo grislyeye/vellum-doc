@@ -75,8 +75,7 @@ export class VellumDocument extends LitElement {
   override connectedCallback() {
     super.connectedCallback()
     this.labelHeaders()
-    const checkIndexVisibility = this.checkIndexVisibility.bind(this)
-    window.addEventListener('resize', checkIndexVisibility)
+    this.enableMobileIndexVisibility()
   }
 
   labelHeaders() {
@@ -105,6 +104,11 @@ export class VellumDocument extends LitElement {
 
       heading.append(anchor)
     })
+  }
+
+  enableMobileIndexVisibility() {
+    const checkIndexVisibility = this.checkIndexVisibility.bind(this)
+    window.addEventListener('resize', checkIndexVisibility)
   }
 
   get drawer(): LionDrawer {
