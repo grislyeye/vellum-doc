@@ -2,6 +2,8 @@ import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import { slugifyWithCounter } from '@sindresorhus/slugify'
 
+import '@lion/ui/define/lion-drawer.js'
+
 @customElement('vellum-doc')
 export class VellumDocument extends LitElement {
   static override styles = css`
@@ -14,25 +16,34 @@ export class VellumDocument extends LitElement {
       --default-index-width: 300px;
     }
 
-    #sidebar {
-      float: left;
-      min-width: var(--index-width, var(--default-index-width));
-      font-size: 15px;
+    #drawer {
+      position: sticky;
+      top: 0;
+      --min-width: 0;
     }
 
-    .scrollable {
-      width: var(--index-width, var(--default-index-width));
-      min-height: 100vh;
-      max-height: 100vh;
+    #toggle {
       position: fixed;
-      top: 0;
-      overflow-y: auto;
+      bottom: 1.5em;
+      left: 1.5em;
+      padding: 20px;
+      background-color: lightgray;
+      border-radius: 50%;
+      height: 20px;
+      width: 20px;
     }
 
     #index {
-      min-height: 100vh;
+      width: var(--index-width, var(--default-index-width));
       border-right: 1px solid;
       padding-bottom: 1em;
+    }
+
+    .scrollable {
+      min-height: 100vh;
+      max-height: 100vh;
+      overflow-y: scroll;
+      position: sticky;
     }
 
     #index h1 {
@@ -62,16 +73,6 @@ export class VellumDocument extends LitElement {
       color: inherit;
       text-decoration: inherit;
     }
-
-    @media (max-width: 700px) {
-      #document {
-        margin-left: 0;
-      }
-
-      #sidebar {
-        display: none;
-      }
-    }
   `
 
   @property({ type: Boolean })
@@ -83,10 +84,24 @@ export class VellumDocument extends LitElement {
     return Array.from(this.querySelectorAll('h1, h2, h3, h4'))
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  get drawer(): any | null {
+    return this.renderRoot.querySelector('#drawer')
+  }
+
+  get toggle(): HTMLElement | null {
+    return this.renderRoot.querySelector('#toggle')
+  }
+
   override connectedCallback() {
     super.connectedCallback()
     this.labelHeaders()
     this.exportIndexHeadingParts()
+    this.enableMobileIndexVisibility()
+  }
+
+  override firstUpdated(): void {
+    this.checkIndexVisibility()
   }
 
   labelHeaders() {
@@ -122,16 +137,58 @@ export class VellumDocument extends LitElement {
     })
   }
 
+  enableMobileIndexVisibility() {
+    const checkIndexVisibility = this.checkIndexVisibility.bind(this)
+    window.addEventListener('resize', checkIndexVisibility)
+  }
+
+  toggleIndex() {
+    if (this.drawer) this.drawer.toggle()
+  }
+
+  checkIndexVisibility() {
+    if (window.innerWidth < 700 && this.toggle) {
+      this.toggle!.style.visibility = 'visible'
+    }
+
+    if (window.innerWidth < 700 && this.drawer && this.drawer.opened) {
+      this.toggleIndex()
+    }
+
+    if (window.innerWidth >= 700 && this.toggle) {
+      this.toggle.style.visibility = 'hidden'
+    }
+
+    if (window.innerWidth >= 700 && this.drawer && !this.drawer.opened) {
+      this.toggleIndex()
+    }
+  }
+
   override render() {
     return html`
-      <div id="sidebar">
-        <div class="scrollable">
-          <div id="index" part="index">${this.renderIndex()}</div>
+      <lion-drawer
+        id="drawer"
+        @click="${this.checkIndexVisibility}"
+        opened
+        hide>
+        <div slot="content">
+          <div id="index" class="scrollable" part="index">
+            ${this.renderIndex()}
+          </div>
         </div>
-      </div>
+      </lion-drawer>
 
       <article id="document">
-        <slot></slot>
+        <div id="toggle" @click="${this.toggleIndex}">
+          <svg class="icon" viewBox="0 0 100 80" width="20" height="20">
+            <rect width="100" height="15"></rect>
+            <rect y="30" width="100" height="15"></rect>
+            <rect y="60" width="100" height="15"></rect>
+          </svg>
+        </div>
+        <div id="content" @click="${this.checkIndexVisibility}">
+          <slot></slot>
+        </div>
       </article>
     `
   }
