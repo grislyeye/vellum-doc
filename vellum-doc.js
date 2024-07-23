@@ -2761,13 +2761,13 @@
     connectedCallback() {
       super.connectedCallback();
       this.labelHeaders();
+      this.exportIndexParts();
     }
     labelHeaders() {
       this.headings.forEach((heading) => {
         if (!heading.id) {
           const newId = heading.textContent ? this.slugify(heading.textContent) : Math.random().toString(36).slice(2);
           heading.id = newId;
-          heading.part.add(`index-${heading.localName}`);
         }
       });
     }
@@ -2781,6 +2781,11 @@
         anchor.className = "anchor";
         anchor.title = heading.textContent ? heading.textContent : "";
         heading.append(anchor);
+      });
+    }
+    exportIndexParts() {
+      this.headings.forEach((heading) => {
+        heading.part.add(`index-${heading.localName}`);
       });
     }
     render() {
