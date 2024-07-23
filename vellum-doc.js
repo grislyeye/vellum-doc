@@ -2749,6 +2749,443 @@
     return countable;
   }
 
+  // node_modules/@lion/ui/components/core/src/uuid.js
+  function uuid(prefix = "") {
+    const elementName = prefix.length > 0 ? `${prefix}-` : "";
+    return `${elementName}${Math.random().toString(36).substr(2, 10)}`;
+  }
+
+  // node_modules/@lion/ui/components/collapsible/src/LionCollapsible.js
+  var LionCollapsible = class extends s3 {
+    static get styles() {
+      return [
+        i`
+        :host {
+          display: block;
+        }
+
+        :host ::slotted([slot='content']) {
+          overflow: hidden;
+        }
+      `
+      ];
+    }
+    static get properties() {
+      return {
+        opened: {
+          type: Boolean,
+          reflect: true
+        }
+      };
+    }
+    render() {
+      return x`
+      <slot name="invoker"></slot>
+      <slot name="content"></slot>
+    `;
+    }
+    constructor() {
+      super();
+      this.opened = false;
+      this.toggle = this.toggle.bind(this);
+    }
+    connectedCallback() {
+      super.connectedCallback();
+      const uid = uuid();
+      if (this._invokerNode) {
+        this._invokerNode.addEventListener("click", this.toggle);
+        this._invokerNode.setAttribute("aria-expanded", `${this.opened}`);
+        this._invokerNode.setAttribute("id", `collapsible-invoker-${uid}`);
+        this._invokerNode.setAttribute("aria-controls", `collapsible-content-${uid}`);
+      }
+      if (this._contentNode) {
+        this._contentNode.setAttribute("aria-labelledby", `collapsible-invoker-${uid}`);
+        this._contentNode.setAttribute("id", `collapsible-content-${uid}`);
+      }
+      this.__setDefaultState();
+    }
+    /**
+     * Update aria labels on state change.
+     * @param {import('lit').PropertyValues } changedProperties
+     */
+    updated(changedProperties) {
+      super.updated(changedProperties);
+      if (changedProperties.has("opened")) {
+        this.__openedChanged();
+      }
+    }
+    disconnectedCallback() {
+      super.disconnectedCallback();
+      if (this._invokerNode) {
+        this._invokerNode.removeEventListener("click", this.toggle);
+      }
+    }
+    /**
+     * Show extra content.
+     * @public
+     */
+    show() {
+      if (!this.opened) {
+        this.opened = true;
+      }
+    }
+    /**
+     * Hide extra content.
+     * @public
+     */
+    hide() {
+      if (this.opened) {
+        this.opened = false;
+      }
+    }
+    /**
+     * Toggle the current(opened/closed) state.
+     * @public
+     */
+    toggle() {
+      this.opened = !this.opened;
+      this.requestUpdate();
+    }
+    /**
+     * Show animation implementation in sub-classer.
+     * @param {Object} opts
+     * @protected
+     */
+    // eslint-disable-next-line class-methods-use-this, no-empty-function, no-unused-vars
+    async _showAnimation(opts) {
+    }
+    /**
+     * Hide animation implementation in sub-classer.
+     * @param {Object} opts
+     * @protected
+     */
+    // eslint-disable-next-line class-methods-use-this, no-empty-function, no-unused-vars
+    async _hideAnimation(opts) {
+    }
+    /**
+     * @protected
+     */
+    get _invokerNode() {
+      return (
+        /** @type {HTMLElement[]} */
+        Array.from(this.children).find(
+          (child) => child.slot === "invoker"
+        )
+      );
+    }
+    /**
+     * @protected
+     */
+    get _contentNode() {
+      return (
+        /** @type {HTMLElement[]} */
+        Array.from(this.children).find(
+          (child) => child.slot === "content"
+        )
+      );
+    }
+    /**
+     * @protected
+     */
+    get _contentHeight() {
+      const size = this._contentNode?.getBoundingClientRect().height || 0;
+      return `${size}px`;
+    }
+    /**
+     * Update content slot size and fire `opened-changed` event
+     * @private
+     */
+    __openedChanged() {
+      this.__updateContentSize();
+      if (this._invokerNode) {
+        this._invokerNode.setAttribute("aria-expanded", `${this.opened}`);
+      }
+      this.dispatchEvent(new CustomEvent("opened-changed"));
+    }
+    /**
+     * Toggle extra content visibility on state change.
+     * @private
+     */
+    async __updateContentSize() {
+      if (this._contentNode) {
+        if (this.opened) {
+          this._contentNode.style.setProperty("display", "");
+          await this._showAnimation({ contentNode: this._contentNode });
+        } else {
+          await this._hideAnimation({ contentNode: this._contentNode });
+          this._contentNode.style.setProperty("display", "none");
+        }
+      }
+    }
+    /**
+     * Set default state for content based on `opened` attr
+     * @private
+     */
+    __setDefaultState() {
+      if (!this.opened && this._contentNode) {
+        this._contentNode.style.setProperty("display", "none");
+      }
+    }
+  };
+
+  // node_modules/@lion/ui/components/drawer/src/drawerStyle.js
+  var drawerStyle = i`
+  :host {
+    display: block;
+    height: 100%;
+    --min-width: 72px;
+    --max-width: 320px;
+    --min-height: auto;
+    --max-height: fit-content;
+    --start-width: var(--min-width);
+    --start-height: 100%;
+    --transition-property: width;
+  }
+
+  :host([position='top']) {
+    width: 100%;
+    --min-width: 0px;
+    --max-width: none;
+    --min-height: 50px;
+    --max-height: 200px;
+    --start-width: 100%;
+    --start-height: var(--min-height);
+    --transition-property: height;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    width: var(--start-width);
+    height: var(--start-height);
+    min-width: var(--min-width);
+    max-width: var(--max-width);
+    min-height: var(--min-height);
+    max-height: var(--max-height);
+    overflow: hidden;
+    box-sizing: border-box;
+    transition: var(--transition-property) 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+
+  .headline-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+
+  :host([position='right']) .headline-container {
+    flex-direction: row-reverse;
+  }
+
+  .content-container {
+    overflow: hidden;
+    flex-grow: 1;
+  }
+
+  ::slotted([slot='content']) {
+    width: var(--max-width);
+  }
+`;
+
+  // node_modules/@lion/ui/components/drawer/src/LionDrawer.js
+  var EVENT = {
+    TRANSITION_END: "transitionend",
+    TRANSITION_START: "transitionstart"
+  };
+  var LionDrawer = class extends LionCollapsible {
+    static get properties() {
+      return {
+        transitioning: {
+          type: Boolean,
+          reflect: true
+        },
+        opened: {
+          type: Boolean,
+          reflect: true
+        },
+        position: {
+          type: String,
+          reflect: true
+        }
+      };
+    }
+    constructor() {
+      super();
+      this.__toggle = () => {
+        this.opened = !this.opened;
+      };
+    }
+    connectedCallback() {
+      super.connectedCallback();
+      if (!this.hasAttribute("position")) {
+        this.position = "left";
+      }
+      if (this._contentNode) {
+        this._contentNode.style.setProperty("display", "");
+      }
+      this.__setBoundaries();
+    }
+    /**
+     * Update aria labels on state change.
+     * @param {import('lit').PropertyValues } changedProperties
+     */
+    updated(changedProperties) {
+      super.updated(changedProperties);
+      if (changedProperties.has("opened")) {
+        this._openedChanged();
+      }
+    }
+    static get styles() {
+      return [drawerStyle];
+    }
+    __setBoundaries() {
+      const host = this.shadowRoot?.host;
+      if (this.position === "top") {
+        this.minHeight = host ? getComputedStyle(host).getPropertyValue("--min-height") : "0px";
+        this.maxHeight = host ? getComputedStyle(host).getPropertyValue("--max-height") : "0px";
+        this.minWidth = "0px";
+        this.maxWidth = "none";
+      } else {
+        this.minWidth = host ? getComputedStyle(host).getPropertyValue("--min-width") : "0px";
+        this.maxWidth = host ? getComputedStyle(host).getPropertyValue("--max-width") : "0px";
+        this.minHeight = "auto";
+        this.maxHeight = "fit-content";
+      }
+      setTimeout(() => {
+        const prop = this.position === "top" ? "width" : "height";
+        if (this.__contentNode) {
+          this.__contentNode.style.setProperty(prop, "");
+        }
+      });
+    }
+    /**
+     * Setter for position property, available values are 'top', 'left' and 'right'
+     * @param {String} position
+     */
+    set position(position) {
+      const stale = this.position;
+      this._position = position;
+      this.setAttribute("position", position);
+      this.__setBoundaries();
+      this.requestUpdate("position", stale);
+    }
+    get position() {
+      return this._position ?? "left";
+    }
+    /**
+     * Trigger show animation and wait for transition to be finished.
+     * @param {Object} options - element node and its options
+     * @param {HTMLElement} options.contentNode
+     * @override
+     */
+    async _showAnimation({ contentNode }) {
+      const min = this.position === "top" ? this.minHeight : this.minWidth;
+      const max = this.position === "top" ? this.maxHeight : this.maxWidth;
+      const prop = this.position === "top" ? "height" : "width";
+      contentNode.style.setProperty(
+        prop,
+        /** @type {string} */
+        min
+      );
+      await new Promise((resolve) => requestAnimationFrame(() => resolve(true)));
+      contentNode.style.setProperty(
+        prop,
+        /** @type {string} */
+        max
+      );
+      await this._waitForTransition({ contentNode });
+    }
+    /**
+     * Trigger hide animation and wait for transition to be finished.
+     * @param {Object} options - element node and its options
+     * @param {HTMLElement} options.contentNode
+     * @override
+     */
+    async _hideAnimation({ contentNode }) {
+      if ((this.position === "left" || this.position === "right") && this._contentWidth === this.minWidth || this.position === "top" && this._contentHeight === this.minHeight) {
+        return;
+      }
+      const min = this.position === "top" ? this.minHeight : this.minWidth;
+      const prop = this.position === "top" ? "height" : "width";
+      contentNode.style.setProperty(
+        prop,
+        /** @type {string} */
+        min
+      );
+      await this._waitForTransition({ contentNode });
+    }
+    /**
+     *  Wait until the transition event is finished.
+     * @param {Object} options - element node and its options
+     * @param {HTMLElement} options.contentNode
+     * @returns {Promise<void>} transition event
+     */
+    _waitForTransition({ contentNode }) {
+      return new Promise((resolve) => {
+        const transitionStarted = () => {
+          contentNode.removeEventListener(EVENT.TRANSITION_START, transitionStarted);
+          this.transitioning = true;
+        };
+        contentNode.addEventListener(EVENT.TRANSITION_START, transitionStarted);
+        const transitionEnded = () => {
+          contentNode.removeEventListener(EVENT.TRANSITION_END, transitionEnded);
+          this.transitioning = false;
+          resolve();
+        };
+        contentNode.addEventListener(EVENT.TRANSITION_END, transitionEnded);
+      });
+    }
+    /**
+     * @protected
+     */
+    get __contentNode() {
+      return (
+        /** @type {HTMLElement} */
+        this.shadowRoot?.querySelector(".container")
+      );
+    }
+    get _contentWidth() {
+      const size = this.__contentNode?.getBoundingClientRect().width || 0;
+      return `${size}px`;
+    }
+    get _contentHeight() {
+      const size = this.__contentNode?.getBoundingClientRect().height || 0;
+      return `${size}px`;
+    }
+    _openedChanged() {
+      this._updateContentSize();
+      if (this._invokerNode) {
+        this._invokerNode.setAttribute("aria-expanded", `${this.opened}`);
+      }
+      this.dispatchEvent(new CustomEvent("opened-changed"));
+    }
+    async _updateContentSize() {
+      if (this.__contentNode) {
+        if (this.opened) {
+          await this._showAnimation({ contentNode: this.__contentNode });
+        } else {
+          await this._hideAnimation({ contentNode: this.__contentNode });
+        }
+      }
+    }
+    render() {
+      return x`
+      <div class="container">
+        <div class="headline-container">
+          <slot name="invoker"></slot>
+          <slot name="headline"></slot>
+        </div>
+        <div class="content-container">
+          <slot name="content"></slot>
+        </div>
+      </div>
+    `;
+    }
+  };
+
+  // node_modules/@lion/ui/exports/define/lion-drawer.js
+  customElements.define("lion-drawer", LionDrawer);
+
   // src/vellum-doc.ts
   var VellumDocument = class extends s3 {
     constructor() {
@@ -2758,10 +3195,21 @@
     get headings() {
       return Array.from(this.querySelectorAll("h1, h2, h3, h4"));
     }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    get drawer() {
+      return this.renderRoot.querySelector("#drawer");
+    }
+    get toggle() {
+      return this.renderRoot.querySelector("#toggle");
+    }
     connectedCallback() {
       super.connectedCallback();
       this.labelHeaders();
       this.exportIndexHeadingParts();
+      this.enableMobileIndexVisibility();
+    }
+    firstUpdated() {
+      this.checkIndexVisibility();
     }
     labelHeaders() {
       this.headings.forEach((heading) => {
@@ -2788,16 +3236,52 @@
         heading.part.add(`index-${heading.localName}`);
       });
     }
+    enableMobileIndexVisibility() {
+      const checkIndexVisibility = this.checkIndexVisibility.bind(this);
+      window.addEventListener("resize", checkIndexVisibility);
+    }
+    toggleIndex() {
+      if (this.drawer) this.drawer.toggle();
+    }
+    checkIndexVisibility() {
+      if (window.innerWidth < 700 && this.toggle) {
+        this.toggle.style.visibility = "visible";
+      }
+      if (window.innerWidth < 700 && this.drawer && this.drawer.opened) {
+        this.toggleIndex();
+      }
+      if (window.innerWidth >= 700 && this.toggle) {
+        this.toggle.style.visibility = "hidden";
+      }
+      if (window.innerWidth >= 700 && this.drawer && !this.drawer.opened) {
+        this.toggleIndex();
+      }
+    }
     render() {
       return x`
-      <div id="sidebar">
-        <div class="scrollable">
-          <div id="index" part="index">${this.renderIndex()}</div>
+      <lion-drawer
+        id="drawer"
+        @click="${this.checkIndexVisibility}"
+        opened
+        hide>
+        <div slot="content">
+          <div id="index" class="scrollable" part="index">
+            ${this.renderIndex()}
+          </div>
         </div>
-      </div>
+      </lion-drawer>
 
       <article id="document">
-        <slot></slot>
+        <div id="toggle" @click="${this.toggleIndex}">
+          <svg class="icon" viewBox="0 0 100 80" width="20" height="20">
+            <rect width="100" height="15"></rect>
+            <rect y="30" width="100" height="15"></rect>
+            <rect y="60" width="100" height="15"></rect>
+          </svg>
+        </div>
+        <div id="content" @click="${this.checkIndexVisibility}">
+          <slot></slot>
+        </div>
       </article>
     `;
     }
@@ -2827,25 +3311,34 @@
       --default-index-width: 300px;
     }
 
-    #sidebar {
-      float: left;
-      min-width: var(--index-width, var(--default-index-width));
-      font-size: 15px;
+    #drawer {
+      position: sticky;
+      top: 0;
+      --min-width: 0;
     }
 
-    .scrollable {
-      width: var(--index-width, var(--default-index-width));
-      min-height: 100vh;
-      max-height: 100vh;
+    #toggle {
       position: fixed;
-      top: 0;
-      overflow-y: auto;
+      bottom: 1.5em;
+      left: 1.5em;
+      padding: 20px;
+      background-color: lightgray;
+      border-radius: 50%;
+      height: 20px;
+      width: 20px;
     }
 
     #index {
-      min-height: 100vh;
+      width: var(--index-width, var(--default-index-width));
       border-right: 1px solid;
       padding-bottom: 1em;
+    }
+
+    .scrollable {
+      min-height: 100vh;
+      max-height: 100vh;
+      overflow-y: scroll;
+      position: sticky;
     }
 
     #index h1 {
@@ -2874,16 +3367,6 @@
     #index a {
       color: inherit;
       text-decoration: inherit;
-    }
-
-    @media (max-width: 700px) {
-      #document {
-        margin-left: 0;
-      }
-
-      #sidebar {
-        display: none;
-      }
     }
   `;
   __decorateClass([
