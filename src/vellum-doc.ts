@@ -17,6 +17,10 @@ export class VellumDocument extends LitElement {
       --default-index-width: 300px;
     }
 
+    #drawer {
+      --min-width: 0;
+    }
+
     #index {
       width: var(--index-width, var(--default-index-width));
       border-right: 1px solid;
@@ -26,9 +30,8 @@ export class VellumDocument extends LitElement {
     .scrollable {
       min-height: 100vh;
       max-height: 100vh;
-      position: fixed;
-      top: 0;
-      overflow-y: auto;
+      overflow-y: scroll;
+      position: sticky;
     }
 
     #index h1 {
@@ -72,7 +75,7 @@ export class VellumDocument extends LitElement {
   override connectedCallback() {
     super.connectedCallback()
     this.labelHeaders()
-    const checkIndexVisibility = this.checkIndexVisibility.bind(this);
+    const checkIndexVisibility = this.checkIndexVisibility.bind(this)
     window.addEventListener('resize', checkIndexVisibility)
   }
 
@@ -104,27 +107,39 @@ export class VellumDocument extends LitElement {
     })
   }
 
+  get drawer(): LionDrawer {
+    return this.renderRoot.querySelector('#drawer')
+  }
+
+  toggleIndex() {
+    const drawer = this.drawer
+    if (drawer) drawer.toggle()
+  }
+
   checkIndexVisibility() {
-    const drawer: LionDrawer | null = this.renderRoot.querySelector('#drawer')
-    console.log(drawer.opened)
+    const drawer = this.drawer
+
     if (window.innerWidth < 700 && drawer && drawer.opened) {
-      console.log('open')
-      drawer.toggle()
-    } else if (drawer && !drawer.opened) {
-      console.log('close')
-      drawer.toggle()
+      this.toggleIndex()
+    }
+
+    if (window.innerWidth >= 700 && drawer && !drawer.opened) {
+      this.toggleIndex()
     }
   }
 
   override render() {
     return html`
-      <lion-drawer id="drawer">
+      <lion-drawer id="drawer" opened hide>
         <div slot="content">
-          <div id="index" class="scrollable" part="index">${this.renderIndex()}</div>
+          <div id="index" class="scrollable" part="index">
+            ${this.renderIndex()}
+          </div>
         </div>
       </lion-drawer>
 
       <article id="document">
+        <button id="toggle" @click="${this.toggleIndex}">OPEN</button>
         <slot></slot>
       </article>
     `
