@@ -9,14 +9,18 @@
 
     <script type="module" src="./vellum-doc.js"></script>
     <style>
+      body {
+        margin: 0;
+      }
+
       vellum-doc {
-        padding-left: 10px;
-        padding-right: 10px;
+        padding: 0;
       }
 
       vellum-doc::part(index) {
         border-right: dashed red;
-        padding-right: 10px;
+        padding-left: 1em;
+        margin-right: 10px;
       }
 
       vellum-doc::part(index-h1) {

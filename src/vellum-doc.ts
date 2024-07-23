@@ -23,6 +23,17 @@ export class VellumDocument extends LitElement {
       --min-width: 0;
     }
 
+    #toggle {
+      position: fixed;
+      bottom: 1.5em;
+      left: 1.5em;
+      padding: 20px;
+      background-color: lightgray;
+      border-radius: 50%;
+      height: 20px;
+      width: 20px;
+    }
+
     #index {
       width: var(--index-width, var(--default-index-width));
       border-right: 1px solid;
@@ -74,6 +85,14 @@ export class VellumDocument extends LitElement {
     return Array.from(this.querySelectorAll('h1, h2, h3, h4'))
   }
 
+  get drawer(): LionDrawer | null {
+    return this.renderRoot.querySelector('#drawer')
+  }
+
+  get toggle(): HTMLElement | null {
+    return this.renderRoot.querySelector('#toggle')
+  }
+
   override connectedCallback() {
     super.connectedCallback()
     this.labelHeaders()
@@ -123,30 +142,35 @@ export class VellumDocument extends LitElement {
     window.addEventListener('resize', checkIndexVisibility)
   }
 
-  get drawer(): LionDrawer {
-    return this.renderRoot.querySelector('#drawer')
-  }
-
   toggleIndex() {
-    const drawer = this.drawer
-    if (drawer) drawer.toggle()
+    if (this.drawer) this.drawer.toggle()
   }
 
   checkIndexVisibility() {
-    const drawer = this.drawer
+    if (window.innerWidth < 700 && this.toggle) {
+      this.toggle!.style.visibility = 'visible'
+    }
 
-    if (window.innerWidth < 700 && drawer && drawer.opened) {
+    if (window.innerWidth < 700 && this.drawer && this.drawer.opened) {
       this.toggleIndex()
     }
 
-    if (window.innerWidth >= 700 && drawer && !drawer.opened) {
+    if (window.innerWidth >= 700 && this.toggle) {
+      this.toggle.style.visibility = 'hidden'
+    }
+
+    if (window.innerWidth >= 700 && this.drawer && !this.drawer.opened) {
       this.toggleIndex()
     }
   }
 
   override render() {
     return html`
-      <lion-drawer id="drawer" opened hide>
+      <lion-drawer
+        id="drawer"
+        @click="${this.checkIndexVisibility}"
+        opened
+        hide>
         <div slot="content">
           <div id="index" class="scrollable" part="index">
             ${this.renderIndex()}
@@ -155,8 +179,16 @@ export class VellumDocument extends LitElement {
       </lion-drawer>
 
       <article id="document">
-        <button id="toggle" @click="${this.toggleIndex}">OPEN</button>
-        <slot></slot>
+        <div id="toggle" @click="${this.toggleIndex}">
+          <svg class="icon" viewBox="0 0 100 80" width="20" height="20">
+            <rect width="100" height="15"></rect>
+            <rect y="30" width="100" height="15"></rect>
+            <rect y="60" width="100" height="15"></rect>
+          </svg>
+        </div>
+        <div id="content" @click="${this.checkIndexVisibility}">
+          <slot></slot>
+        </div>
       </article>
     `
   }
