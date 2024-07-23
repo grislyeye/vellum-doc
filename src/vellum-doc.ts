@@ -18,6 +18,8 @@ export class VellumDocument extends LitElement {
     }
 
     #drawer {
+      position: sticky;
+      top: 0;
       --min-width: 0;
     }
 
