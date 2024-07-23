@@ -81,6 +81,10 @@ export class VellumDocument extends LitElement {
     this.enableMobileIndexVisibility()
   }
 
+  override firstUpdated(): void {
+    this.checkIndexVisibility()
+  }
+
   labelHeaders() {
     this.headings.forEach(heading => {
       if (!heading.id) {
