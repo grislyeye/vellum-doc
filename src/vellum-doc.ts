@@ -75,6 +75,7 @@ export class VellumDocument extends LitElement {
   override connectedCallback() {
     super.connectedCallback()
     this.labelHeaders()
+    this.exportIndexParts()
     this.enableMobileIndexVisibility()
   }
 
@@ -86,7 +87,6 @@ export class VellumDocument extends LitElement {
           : Math.random().toString(36).slice(2)
 
         heading.id = newId
-        heading.part.add(`index-${heading.localName}`)
       }
     })
   }
@@ -103,6 +103,12 @@ export class VellumDocument extends LitElement {
       anchor.title = heading.textContent ? heading.textContent : ''
 
       heading.append(anchor)
+    })
+  }
+
+  exportIndexParts() {
+    this.headings.forEach(heading => {
+      heading.part.add(`index-${heading.localName}`)
     })
   }
 
