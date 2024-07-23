@@ -2761,7 +2761,7 @@
     connectedCallback() {
       super.connectedCallback();
       this.labelHeaders();
-      this.exportIndexParts();
+      this.exportIndexHeadingParts();
     }
     labelHeaders() {
       this.headings.forEach((heading) => {
@@ -2783,7 +2783,7 @@
         heading.append(anchor);
       });
     }
-    exportIndexParts() {
+    exportIndexHeadingParts() {
       this.headings.forEach((heading) => {
         heading.part.add(`index-${heading.localName}`);
       });
