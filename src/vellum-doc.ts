@@ -86,7 +86,7 @@ export class VellumDocument extends LitElement {
   override connectedCallback() {
     super.connectedCallback()
     this.labelHeaders()
-    this.exportIndexParts()
+    this.exportIndexHeadingParts()
   }
 
   labelHeaders() {
@@ -116,7 +116,7 @@ export class VellumDocument extends LitElement {
     })
   }
 
-  exportIndexParts() {
+  exportIndexHeadingParts() {
     this.headings.forEach(heading => {
       heading.part.add(`index-${heading.localName}`)
     })
