@@ -2,6 +2,11 @@ import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import { slugifyWithCounter } from '@sindresorhus/slugify'
 
+import '@shoelace-style/shoelace/dist/components/button/button.js'
+import '@shoelace-style/shoelace/dist/components/drawer/drawer.js'
+
+import { SlDrawer } from '@shoelace-style/shoelace'
+
 @customElement('vellum-doc')
 export class VellumDocument extends LitElement {
   static override styles = css`
@@ -88,6 +93,20 @@ export class VellumDocument extends LitElement {
     this.labelHeaders()
   }
 
+  override firstUpdated() {
+    const drawer: SlDrawer | null = this.shadowRoot!.querySelector('.drawer-placement-start')
+    console.log(this.renderRoot)
+    console.log(drawer)
+
+    if (drawer) {
+      const openButton = drawer.nextElementSibling;
+      const closeButton = drawer.querySelector('sl-button[variant="primary"]');
+
+      openButton!.addEventListener('click', () => drawer.show())
+      closeButton!.addEventListener('click', () => drawer.hide());
+    }
+  }
+
   labelHeaders() {
     this.headings.forEach(heading => {
       if (!heading.id) {
@@ -118,13 +137,13 @@ export class VellumDocument extends LitElement {
 
   override render() {
     return html`
-      <div id="sidebar">
-        <div class="scrollable">
-          <div id="index" part="index">${this.renderIndex()}</div>
-        </div>
-      </div>
+      <sl-drawer label="Drawer" placement="start" class="drawer-placement-start">
+        <div id="index" part="index">${this.renderIndex()}</div>
+        <sl-button slot="footer" variant="primary">Close</sl-button>
+      </sl-drawer>
 
       <article id="document">
+        <sl-button>Open Drawer</sl-button>
         <slot></slot>
       </article>
     `
