@@ -1,17 +1,19 @@
 # \<vellum-doc> [![Test](https://github.com/grislyeye/vellum-doc/actions/workflows/test.yml/badge.svg)](https://github.com/grislyeye/vellum-doc/actions/workflows/test.yml)
 
 A custom element to turn plain HTML into rich documents, inspired by
-[Docsify](https://docsify.js.org). Features include:
-
-- Document index pane
-- Stow index pane on mobile devices
-- Automatically generate anchor links (optional)
+[Docsify](https://docsify.js.org).
 
 **[Demo](https://grislyeye.github.io/vellum-doc/)** |
 **[Developer Guide](CONTRIBUTING.md)** |
 **[Roadmap](https://github.com/grislyeye/vellum-doc/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement)**
 |
 **[Known Issues](https://github.com/grislyeye/vellum-doc/issues?q=is%3Aissue+is%3Aopen+label%3Abug)**
+
+Features include:
+
+- Document index pane
+- Stow index pane on mobile devices
+- Automatically generate anchor links (optional)
 
 ## Usage
 
