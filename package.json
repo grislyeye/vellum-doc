@@ -6,14 +6,14 @@
   "module": "vellum-doc.js",
   "type": "module",
   "scripts": {
-    "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx && npx prettier . --check",
+    "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx && npx prettier . --check && lit-analyzer src",
     "lint:fix": "npx prettier . --write",
     "clean": "rm -rf docs vellum-doc.js vellum-doc.js.map",
     "build": "npm run clean && npm run build:prod",
     "build:prod": "npm run build:analyze && tsc && esbuild src/vellum-doc.ts --bundle --minify --sourcemap=external --outfile=vellum-doc.js",
     "build:dev": "tsc && esbuild src/vellum-doc.ts --bundle --outfile=vellum-doc.js",
     "build:watch": "tsc && esbuild src/vellum-doc.ts --bundle --watch --outfile=vellum-doc.js --servedir=./",
-    "build:analyze": "cem analyze --litelement",
+    "build:analyze": "lit-analyzer src && cem analyze --litelement",
     "build:docs": "npm run build:dev && mkdir docs && cp vellum-doc.js index.html docs/",
     "prepublishOnly": "npm run build"
   },
