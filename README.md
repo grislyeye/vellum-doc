@@ -1,4 +1,4 @@
-# \<vellum-doc>
+# \<vellum-doc> [![Test](https://github.com/grislyeye/vellum-doc/actions/workflows/test.yml/badge.svg)](https://github.com/grislyeye/vellum-doc/actions/workflows/test.yml)
 
 A custom element to turn plain HTML into rich documents, inspired by
 [Docsify](https://docsify.js.org). Features include:
