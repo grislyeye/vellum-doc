@@ -4,12 +4,13 @@ A custom element to turn plain HTML into rich documents, inspired by
 [Docsify](https://docsify.js.org). Features include:
 
 - Document index pane
-- Stow index pane in application drawer on mobile devices
-- Anchor links (optional)
+- Stow index pane on mobile devices
+- Automatically generate anchor links (optional)
 
 **[Demo](https://grislyeye.github.io/vellum-doc/)** |
 **[Developer Guide](CONTRIBUTING.md)** |
-**[Roadmap](https://github.com/grislyeye/vellum-doc/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement)** |
+**[Roadmap](https://github.com/grislyeye/vellum-doc/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement)**
+|
 **[Known Issues](https://github.com/grislyeye/vellum-doc/issues?q=is%3Aissue+is%3Aopen+label%3Abug)**
 
 ## Usage
