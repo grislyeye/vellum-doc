@@ -9,7 +9,7 @@ A custom element to turn plain HTML into rich documents, inspired by
 
 **[Demo](https://grislyeye.github.io/vellum-doc/)** |
 **[Developer Guide](CONTRIBUTING.md)** |
-**[Roadmap](https://github.com/grislyeye/vellum-doc/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement)**
+**[Roadmap](https://github.com/grislyeye/vellum-doc/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement)** | **[Known Issues](https://github.com/grislyeye/vellum-doc/issues?q=is%3Aissue+is%3Aopen+label%3Abug)**
 
 ## Usage
 
