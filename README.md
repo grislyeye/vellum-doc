@@ -77,13 +77,13 @@ Supports the following CSS variables:
 Supports the following
 [shadow parts](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_shadow_parts):
 
-| Shadow Part | Description                                                                                          |
-| ----------- | ---------------------------------------------------------------------------------------------------- |
-| `index`     | The index pane container. Can be used to set padding, style the index divider (`border-right`), etc. |
-| `index-h1`  | `h1` items in the index.                                                                             |
-| `index-h2`  | As above, but for `h1` items.                                                                        |
-| `index-h3`  | As above, but for `h3` items.                                                                        |
-| `index-h4`  | As above, but for `h4` items.                                                                        |
+| Part       | Description                                                                                          |
+| ---------- | ---------------------------------------------------------------------------------------------------- |
+| `index`    | The index pane container. Can be used to set padding, style the index divider (`border-right`), etc. |
+| `index-h1` | `h1` items in the index.                                                                             |
+| `index-h2` | As above, but for `h1` items.                                                                        |
+| `index-h3` | As above, but for `h3` items.                                                                        |
+| `index-h4` | As above, but for `h4` items.                                                                        |
 
 For example:
 
