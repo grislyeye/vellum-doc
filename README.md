@@ -18,7 +18,7 @@ Include the `<script>` in your markup:
 ```html
 <script
   type="module"
-  src="https://www.unpkg.com/vellum-doc@0.8.0/vellum-doc.js"></script>
+  src="https://www.unpkg.com/vellum-doc@0.9.0/vellum-doc.js"></script>
 ```
 
 Or, if you host the script as part of your project (recommended):
