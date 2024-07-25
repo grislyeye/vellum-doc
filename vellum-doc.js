@@ -3339,6 +3339,7 @@
       position: sticky;
       top: 0;
       --min-width: 0;
+      --max-width: var(--index-width, var(--default-index-width));
     }
 
     #toggle {
