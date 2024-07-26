@@ -3382,8 +3382,8 @@
     }
 
     #index h4 {
+      font: 0.9em inherit;
       padding-left: 3em;
-      font: var(--index-level-4-font, 0.9em 'inherit');
     }
 
     #index a {
