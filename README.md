@@ -54,6 +54,14 @@ Example:
 </vellum-doc>
 ```
 
+Works best with smooth scrolling enabled:
+
+```css
+html {
+  scroll-behavior: smooth;
+}
+```
+
 ### Anchors
 
 Anchor links can be dynamically added to document headers using the `anchors`
