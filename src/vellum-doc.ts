@@ -60,7 +60,9 @@ export class VellumDocument extends LitElement {
       </lion-drawer>
 
       <article id="document">
-        <div @click="${this.toggleIndex}">${unsafeSVG(toggleIcon)}</div>
+        <div id="toggle" class="hidden" @click="${this.toggleIndex}">
+          ${unsafeSVG(toggleIcon)}
+        </div>
         <div id="content" @click="${this.checkIndexVisibility}">
           <slot></slot>
         </div>
@@ -126,18 +128,29 @@ export class VellumDocument extends LitElement {
     if (this.drawer) this.drawer.toggle()
   }
 
-  checkIndexVisibility() {
-    if (window.innerWidth < 700 && this.toggle) {
-      this.toggle!.style.visibility = 'visible'
+  hideToggle() {
+    if (this.toggle) {
+      this.toggle.classList.remove('show')
+      this.toggle.classList.add('hide')
     }
+  }
+
+  showToggle() {
+    if (this.toggle) {
+      this.toggle.classList.remove('hide')
+      this.toggle.classList.add('show')
+      this.toggle.style.visibility = 'visible'
+    }
+  }
+
+  checkIndexVisibility() {
+    if (window.innerWidth < 700) this.showToggle()
 
     if (window.innerWidth < 700 && this.drawer && this.drawer.opened) {
       this.toggleIndex()
     }
 
-    if (window.innerWidth >= 700 && this.toggle) {
-      this.toggle.style.visibility = 'hidden'
-    }
+    if (window.innerWidth >= 700) this.hideToggle()
 
     if (window.innerWidth >= 700 && this.drawer && !this.drawer.opened) {
       this.toggleIndex()
