@@ -170,9 +170,9 @@ export class VellumDocument extends LitElement {
         opened
         hide>
         <div slot="content">
-          <div id="index" class="scrollable" part="index">
+          <nav id="index" class="scrollable" part="index">
             ${this.renderIndex()}
-          </div>
+          </nav>
         </div>
       </lion-drawer>
 
