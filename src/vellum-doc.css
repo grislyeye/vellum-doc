@@ -8,10 +8,19 @@
 
 #drawer {
   position: sticky;
+  left: 0;
   top: 0;
 
   --min-width: 0;
   --max-width: var(--index-width, var(--default-index-width));
+}
+
+@media (width < 700px) {
+  #drawer {
+    position: fixed;
+    left: 0;
+    top: 0;
+  }
 }
 
 #toggle {
@@ -54,6 +63,7 @@
 #index {
   border-right: 1px solid;
   padding-bottom: 1em;
+  background-color: white;
 }
 
 .scrollable {
