@@ -1,0 +1,64 @@
+:host {
+  display: flex;
+
+  padding: 0;
+  margin: 0;
+
+  --default-index-width: 300px;
+}
+
+#drawer {
+  position: sticky;
+  top: 0;
+  --min-width: 0;
+  --max-width: var(--index-width, var(--default-index-width));
+}
+
+#toggle {
+  position: fixed;
+  bottom: 1.5em;
+  left: 1.5em;
+  height: 50px;
+  width: 50px;
+}
+
+#index {
+  width: var(--index-width, var(--default-index-width));
+  border-right: 1px solid;
+  padding-bottom: 1em;
+}
+
+.scrollable {
+  min-height: 100vh;
+  max-height: 100vh;
+  overflow-y: scroll;
+  position: sticky;
+}
+
+#index h1 {
+  font: bold 1.3em inherit;
+  margin: 0;
+  padding-top: 1em;
+  padding-bottom: 0.5em;
+  line-height: 1em;
+  text-align: center;
+}
+
+#index h2 {
+  font: bold 1.15em inherit;
+}
+
+#index h3 {
+  font: 1em inherit;
+  padding-left: 1.4em;
+}
+
+#index h4 {
+  font: 0.9em inherit;
+  padding-left: 3em;
+}
+
+#index a {
+  color: inherit;
+  text-decoration: inherit;
+}

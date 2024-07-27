@@ -11,9 +11,9 @@
     "clean": "rm -rf docs vellum-doc.js vellum-doc.js.map",
     "build": "npm run clean && npm run build:prod",
     "start": "npm run build:watch",
-    "build:prod": "npm run build:analyze && tsc && esbuild src/vellum-doc.ts --bundle --minify --sourcemap=external --outfile=vellum-doc.js",
-    "build:dev": "tsc && esbuild src/vellum-doc.ts --bundle --outfile=vellum-doc.js",
-    "build:watch": "tsc && esbuild src/vellum-doc.ts --bundle --watch --outfile=vellum-doc.js --servedir=./",
+    "build:prod": "npm run build:analyze && tsc && esbuild src/vellum-doc.ts --bundle --minify --sourcemap=external --outfile=vellum-doc.js --loader:.svg=text --loader:.css=text",
+    "build:dev": "tsc && esbuild src/vellum-doc.ts --bundle --outfile=vellum-doc.js --loader:.svg=text --loader:.css=text",
+    "build:watch": "tsc && esbuild src/vellum-doc.ts --bundle --watch --outfile=vellum-doc.js --servedir=./ --loader:.svg=text --loader:.css=text",
     "build:analyze": "lit-analyzer src && cem analyze --litelement",
     "build:docs": "npm run build:dev && mkdir docs && cp vellum-doc.js index.html docs/",
     "prepublishOnly": "npm run build"
