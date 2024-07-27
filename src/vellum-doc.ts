@@ -46,7 +46,6 @@ export class VellumDocument extends LitElement {
   }
 
   override render() {
-    console.log(toggleIcon)
     return html`
       <lion-drawer
         id="drawer"
