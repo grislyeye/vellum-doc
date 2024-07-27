@@ -44,7 +44,7 @@ for more information.
 To run the dev server and open the project in a new browser tab:
 
 ```bash
-npm run serve
+npm start
 ```
 
 There is a demo HTML file located at `/index.html` that you can view at
