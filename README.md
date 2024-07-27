@@ -1,6 +1,6 @@
 # \<vellum-doc> [![Test](https://github.com/grislyeye/vellum-doc/actions/workflows/test.yml/badge.svg)](https://github.com/grislyeye/vellum-doc/actions/workflows/test.yml)
 
-A custom element to turn plain HTML into rich documents, inspired by
+A custom element to turn plain HTML into rich documents. Inspired by
 [Docsify](https://docsify.js.org).
 
 **[Demo](https://grislyeye.github.io/vellum-doc/)** |
