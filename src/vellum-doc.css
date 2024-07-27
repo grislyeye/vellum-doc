@@ -1,6 +1,5 @@
 :host {
   display: flex;
-
   padding: 0;
   margin: 0;
 
@@ -10,6 +9,7 @@
 #drawer {
   position: sticky;
   top: 0;
+
   --min-width: 0;
   --max-width: var(--index-width, var(--default-index-width));
 }
@@ -24,26 +24,28 @@
 }
 
 #toggle.show {
-  animation: fadeIn 0.5s forwards;
+  animation: fade-in 0.5s forwards;
 }
 
-@keyframes fadeIn {
+@keyframes fade-in {
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }
 }
 
 #toggle.hide {
-  animation: fadeOut 0.5s forwards;
+  animation: fade-out 0.5s forwards;
 }
 
-@keyframes fadeOut {
+@keyframes fade-out {
   0% {
     opacity: 1;
   }
+
   100% {
     opacity: 0;
   }

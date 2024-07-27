@@ -6,7 +6,7 @@
   "module": "vellum-doc.js",
   "type": "module",
   "scripts": {
-    "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx && npx prettier . --check && lit-analyzer src",
+    "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx && npx prettier . --check && npx stylelint src/**/*.css && lit-analyzer src",
     "lint:fix": "npx prettier . --write",
     "clean": "rm -rf docs vellum-doc.js vellum-doc.js.map",
     "build": "npm run clean && npm run build:prod",
@@ -41,6 +41,8 @@
     "lit-analyzer": "^2.0.3",
     "prettier": "^3.3.3",
     "rimraf": "^6.0.1",
+    "stylelint": "^16.7.0",
+    "stylelint-config-standard": "^36.0.1",
     "typescript": "~5.5.4"
   },
   "customElements": "custom-elements.json"
