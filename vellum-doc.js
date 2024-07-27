@@ -3264,7 +3264,6 @@
       if (this.anchors) this.anchorHeadings();
     }
     render() {
-      console.log(hamburger_circle_default);
       return x`
       <lion-drawer
         id="drawer"
