@@ -3195,7 +3195,6 @@
     get headings() {
       return Array.from(this.querySelectorAll("h1, h2, h3, h4"));
     }
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     get drawer() {
       return this.renderRoot.querySelector("#drawer");
     }
