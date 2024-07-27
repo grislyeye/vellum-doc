@@ -50,7 +50,6 @@
 }
 
 #index {
-  width: var(--index-width, var(--default-index-width));
   border-right: 1px solid;
   padding-bottom: 1em;
 }
