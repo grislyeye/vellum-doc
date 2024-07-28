@@ -91,7 +91,7 @@ Supports the following
 | ---------- | ---------------------------------------------------------------------------------------------------- |
 | `index`    | The index pane container. Can be used to set padding, style the index divider (`border-right`), etc. |
 | `index-h1` | `h1` items in the index.                                                                             |
-| `index-h2` | As above, but for `h1` items.                                                                        |
+| `index-h2` | As above, but for `h2` items.                                                                        |
 | `index-h3` | As above, but for `h3` items.                                                                        |
 | `index-h4` | As above, but for `h4` items.                                                                        |
 
