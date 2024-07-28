@@ -4,6 +4,8 @@
   margin: 0;
 
   --default-index-width: 300px;
+  --floating-index-layer: 10;
+  --toggle-layer: 20;
 }
 
 #drawer {
@@ -20,6 +22,7 @@
     position: fixed;
     left: 0;
     top: 0;
+    z-index: var(--floating-index-layer);
   }
 }
 
@@ -30,6 +33,7 @@
   left: 1.5em;
   height: 50px;
   width: 50px;
+  z-index: var(--toggle-layer);
 }
 
 #toggle.show {
