@@ -15,7 +15,7 @@
   --max-width: var(--index-width, var(--default-index-width));
 }
 
-@media (width < 700px) {
+@media (max-width: 700px) {
   #drawer {
     position: fixed;
     left: 0;
