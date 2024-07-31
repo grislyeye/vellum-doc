@@ -279,7 +279,7 @@
   var i3 = t2.trustedTypes;
   var s2 = i3 ? i3.createPolicy("lit-html", { createHTML: (t6) => t6 }) : void 0;
   var e3 = "$lit$";
-  var h2 = `lit$${(Math.random() + "").slice(9)}$`;
+  var h2 = `lit$${Math.random().toFixed(9).slice(2)}$`;
   var o3 = "?" + h2;
   var n3 = `<${o3}>`;
   var r3 = document;
@@ -515,7 +515,7 @@
     }
   };
   var Z = t2.litHtmlPolyfillSupport;
-  Z?.(V, M), (t2.litHtmlVersions ??= []).push("3.1.2");
+  Z?.(V, M), (t2.litHtmlVersions ??= []).push("3.1.4");
   var j = (t6, i5, s4) => {
     const e7 = s4?.renderBefore ?? i5;
     let h3 = e7._$litPart$;
@@ -552,7 +552,7 @@
   s3._$litElement$ = true, s3["finalized", "finalized"] = true, globalThis.litElementHydrateSupport?.({ LitElement: s3 });
   var r4 = globalThis.litElementPolyfillSupport;
   r4?.({ LitElement: s3 });
-  (globalThis.litElementVersions ??= []).push("4.0.4");
+  (globalThis.litElementVersions ??= []).push("4.0.6");
 
   // node_modules/@lit/reactive-element/decorators/custom-element.js
   var t3 = (t6) => (e7, o7) => {
@@ -635,16 +635,8 @@
   t5.directiveName = "unsafeSVG", t5.resultType = 2;
   var o6 = e5(t5);
 
-  // node_modules/@sindresorhus/slugify/node_modules/escape-string-regexp/index.js
+  // node_modules/escape-string-regexp/index.js
   function escapeStringRegexp(string) {
-    if (typeof string !== "string") {
-      throw new TypeError("Expected a string");
-    }
-    return string.replace(/[|\\{}()[\]^$+*?.]/g, "\\$&").replace(/-/g, "\\x2d");
-  }
-
-  // node_modules/@sindresorhus/transliterate/node_modules/escape-string-regexp/index.js
-  function escapeStringRegexp2(string) {
     if (typeof string !== "string") {
       throw new TypeError("Expected a string");
     }
@@ -2677,7 +2669,7 @@
   // node_modules/@sindresorhus/transliterate/index.js
   var doCustomReplacements = (string, replacements2) => {
     for (const [key, value] of replacements2) {
-      string = string.replace(new RegExp(escapeStringRegexp2(key), "g"), value);
+      string = string.replace(new RegExp(escapeStringRegexp(key), "g"), value);
     }
     return string;
   };
