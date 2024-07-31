@@ -49,7 +49,7 @@ export class VellumDocument extends LitElement {
     return html`
       <lion-drawer
         id="drawer"
-        @click="${this.checkIndexVisibility}"
+        @click="${() => this.checkIndexVisibility()}"
         opened
         hide>
         <div slot="content">
@@ -60,10 +60,10 @@ export class VellumDocument extends LitElement {
       </lion-drawer>
 
       <article id="document">
-        <div id="toggle" class="hidden" @click="${this.toggleIndex}">
+        <div id="toggle" class="hidden" @click="${() => this.toggleIndex()}">
           ${unsafeSVG(toggleIcon)}
         </div>
-        <div id="content" @click="${this.checkIndexVisibility}">
+        <div id="content" @click="${() => this.checkIndexVisibility()}">
           <slot></slot>
         </div>
       </article>

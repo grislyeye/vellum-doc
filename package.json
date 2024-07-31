@@ -1,12 +1,12 @@
 {
   "name": "vellum-doc",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "description": "A simple custom element for web publishing",
   "main": "vellum-doc.js",
   "module": "vellum-doc.js",
   "type": "module",
   "scripts": {
-    "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx && npx prettier . --check && npx stylelint src/**/*.css && lit-analyzer src",
+    "lint": "eslint src/ && npx prettier . --check && npx stylelint src/**/*.css && lit-analyzer src",
     "lint:fix": "npx prettier . --write",
     "clean": "rm -rf docs vellum-doc.js vellum-doc.js.map",
     "build": "npm run clean && npm run build:prod",
@@ -30,23 +30,24 @@
   "license": "BSD-3-Clause",
   "dependencies": {
     "@sindresorhus/slugify": "^2.2.1",
-    "eslint": "^8.57.0",
     "lit": "^3.1.4"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.10.3",
+    "@eslint/js": "^9.8.0",
     "@lion/ui": "^0.7.5",
-    "@typescript-eslint/eslint-plugin": "^7.17.0",
-    "@typescript-eslint/parser": "^7.17.0",
+    "@types/eslint__js": "^8.42.3",
     "esbuild": "^0.23.0",
+    "eslint": "^9.8.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "lit-analyzer": "^2.0.3",
     "prettier": "^3.3.3",
     "rimraf": "^6.0.1",
-    "stylelint": "^16.7.0",
+    "stylelint": "^16.8.1",
     "stylelint-config-standard": "^36.0.1",
-    "typescript": "~5.5.4"
+    "typescript": "~5.5.4",
+    "typescript-eslint": "^8.0.0"
   },
   "customElements": "custom-elements.json"
 }
