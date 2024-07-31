@@ -3267,7 +3267,7 @@
       return x`
       <lion-drawer
         id="drawer"
-        @click="${this.checkIndexVisibility}"
+        @click="${() => this.checkIndexVisibility()}"
         opened
         hide>
         <div slot="content">
@@ -3278,10 +3278,10 @@
       </lion-drawer>
 
       <article id="document">
-        <div id="toggle" class="hidden" @click="${this.toggleIndex}">
+        <div id="toggle" class="hidden" @click="${() => this.toggleIndex()}">
           ${o6(hamburger_circle_default)}
         </div>
-        <div id="content" @click="${this.checkIndexVisibility}">
+        <div id="content" @click="${() => this.checkIndexVisibility()}">
           <slot></slot>
         </div>
       </article>
