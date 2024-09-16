@@ -35,7 +35,7 @@
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.10.3",
     "@eslint/js": "^9.8.0",
-    "@lion/ui": "^0.7.5",
+    "@lion/ui": "^0.7.7",
     "@types/eslint__js": "^8.42.3",
     "esbuild": "^0.23.0",
     "eslint": "^9.8.0",
