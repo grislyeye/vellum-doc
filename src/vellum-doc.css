@@ -78,7 +78,9 @@
 }
 
 #index h1 {
-  font: bold 1.3em inherit;
+  font-style: inherit;
+  font-size: 1.3em;
+  font-weight: bold;
   margin: 0;
   padding-top: 1em;
   padding-bottom: 0.5em;
@@ -87,16 +89,20 @@
 }
 
 #index h2 {
-  font: bold 1.15em inherit;
+  font-style: inherit;
+  font-weight: bold;
+  font-size: 1.15em;
 }
 
 #index h3 {
-  font: 1em inherit;
+  font-style: inherit;
+  font-size: 1em;
   padding-left: 1.4em;
 }
 
 #index h4 {
-  font: 0.9em inherit;
+  font-style: inherit;
+  font-size: 0.9em;
   padding-left: 3em;
 }
 

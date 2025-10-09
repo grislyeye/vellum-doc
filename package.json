@@ -29,25 +29,24 @@
   "author": "Ric Wood <ric@grislyeye.com>",
   "license": "BSD-3-Clause",
   "dependencies": {
-    "@sindresorhus/slugify": "^2.2.1",
-    "lit": "^3.2.1"
+    "@sindresorhus/slugify": "^3.0.0",
+    "lit": "^3.3.1"
   },
   "devDependencies": {
-    "@custom-elements-manifest/analyzer": "^0.10.3",
-    "@eslint/js": "^9.12.0",
-    "@lion/ui": "^0.8.0",
-    "@types/eslint__js": "^8.42.3",
-    "esbuild": "^0.24.0",
-    "eslint": "^9.12.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.2.1",
+    "@custom-elements-manifest/analyzer": "^0.10.10",
+    "@eslint/js": "^9.37.0",
+    "@lion/ui": "^0.15.1",
+    "esbuild": "^0.25.10",
+    "eslint": "^9.37.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
     "lit-analyzer": "^2.0.3",
-    "prettier": "^3.3.3",
+    "prettier": "^3.6.2",
     "rimraf": "^6.0.1",
-    "stylelint": "^16.10.0",
-    "stylelint-config-standard": "^36.0.1",
-    "typescript": "~5.6.3",
-    "typescript-eslint": "^8.9.0"
+    "stylelint": "^16.25.0",
+    "stylelint-config-standard": "^39.0.1",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.46.0"
   },
   "customElements": "custom-elements.json"
 }
