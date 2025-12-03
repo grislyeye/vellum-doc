@@ -2685,7 +2685,8 @@
     ["\u2053", "-"]
     // U+2053 Swung Dash (Other_Punctuation category)
   ];
-  var replacements_default = replacements;
+  var builtinReplacements = new Map(replacements);
+  var replacements_default = builtinReplacements;
 
   // node_modules/@sindresorhus/transliterate/locale-replacements.js
   var danishNorwegianReplacements = [
@@ -2769,6 +2770,9 @@
       ["\u0416", "Zh"]
     ]
   };
+  for (const locale of Object.keys(localeReplacements)) {
+    localeReplacements[locale] = new Map(localeReplacements[locale]);
+  }
   var locale_replacements_default = localeReplacements;
 
   // node_modules/@sindresorhus/transliterate/index.js
@@ -2780,10 +2784,10 @@
   };
   var getLocaleReplacements = (locale) => {
     if (!locale) {
-      return [];
+      return void 0;
     }
     const normalizedLocale = locale.toLowerCase().replace(/^no(-|$)/, "nb$1");
-    return locale_replacements_default[normalizedLocale] || locale_replacements_default[normalizedLocale.split("-")[0]] || [];
+    return locale_replacements_default[normalizedLocale] || locale_replacements_default[normalizedLocale.split("-")[0]] || void 0;
   };
   function transliterate(string, options) {
     if (typeof string !== "string") {
@@ -2793,14 +2797,22 @@
       customReplacements: [],
       ...options
     };
-    const localeSpecificReplacements = getLocaleReplacements(options.locale);
-    const customReplacements = new Map([
-      ...replacements_default,
-      ...localeSpecificReplacements,
-      ...options.customReplacements
-    ]);
+    const localeMap = getLocaleReplacements(options.locale);
+    let replacements2 = replacements_default;
+    const hasCustomReplacements = options.customReplacements.length > 0 || options.customReplacements.size > 0;
+    if (localeMap || hasCustomReplacements) {
+      replacements2 = new Map(replacements_default);
+      if (localeMap) {
+        for (const [key, value] of localeMap) {
+          replacements2.set(key, value);
+        }
+      }
+      for (const [key, value] of options.customReplacements) {
+        replacements2.set(key, value);
+      }
+    }
     string = string.normalize();
-    string = doCustomReplacements(string, customReplacements);
+    string = doCustomReplacements(string, replacements2);
     string = string.normalize("NFD").replaceAll(/\p{Diacritic}/gu, "").normalize();
     string = string.replaceAll(/\p{Dash_Punctuation}/gu, "-");
     return string;
