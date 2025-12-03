@@ -33,20 +33,20 @@
     "lit": "^3.3.1"
   },
   "devDependencies": {
-    "@custom-elements-manifest/analyzer": "^0.10.10",
-    "@eslint/js": "^9.37.0",
-    "@lion/ui": "^0.15.1",
-    "esbuild": "^0.25.10",
-    "eslint": "^9.37.0",
+    "@custom-elements-manifest/analyzer": "^0.11.0",
+    "@eslint/js": "^9.39.1",
+    "@lion/ui": "^0.15.3",
+    "esbuild": "^0.27.0",
+    "eslint": "^9.39.1",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4",
     "lit-analyzer": "^2.0.3",
-    "prettier": "^3.6.2",
-    "rimraf": "^6.0.1",
-    "stylelint": "^16.25.0",
+    "prettier": "^3.7.4",
+    "rimraf": "^6.1.2",
+    "stylelint": "^16.26.1",
     "stylelint-config-standard": "^39.0.1",
     "typescript": "~5.9.3",
-    "typescript-eslint": "^8.46.0"
+    "typescript-eslint": "^8.48.1"
   },
   "customElements": "custom-elements.json"
 }
