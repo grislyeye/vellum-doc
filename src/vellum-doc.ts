@@ -3,11 +3,14 @@ import { customElement, property } from 'lit/decorators.js'
 import { unsafeSVG } from 'lit/directives/unsafe-svg.js'
 import { slugifyWithCounter } from '@sindresorhus/slugify'
 import { LionDrawer } from '@lion/ui/drawer.js'
+import { LionCollapsible } from '@lion/ui/collapsible.js'
+import { Heading } from './heading.js'
 
 import styles from './vellum-doc.css'
 import toggleIcon from './hamburger-circle.svg'
 
 import '@lion/ui/define/lion-drawer.js'
+import '@lion/ui/define/lion-collapsible.js'
 
 @customElement('vellum-doc')
 export class VellumDocument extends LitElement {
@@ -16,10 +19,13 @@ export class VellumDocument extends LitElement {
   @property({ type: Boolean })
   anchors?: boolean
 
+  @property({ type: Number })
+  collapse?: number
+
   private slugify = slugifyWithCounter()
 
-  get headings(): HTMLElement[] {
-    return Array.from(this.querySelectorAll('h1, h2, h3, h4'))
+  get headings(): HTMLHeadingElement[] {
+    return Array.from(this.querySelectorAll('h1, h2, h3, h4, h5, h6'))
   }
 
   get drawer(): LionDrawer | null {
@@ -71,18 +77,29 @@ export class VellumDocument extends LitElement {
   }
 
   private renderIndex() {
-    const index: [HTMLElement, string][] = this.headings.map(heading => [
-      heading.cloneNode(true) as HTMLElement,
-      heading.id
-    ])
-
-    index.forEach(([heading]: [HTMLElement, string]) =>
-      heading.removeAttribute('id')
+    const index = this.headings.map(
+      (heading, index) => {
+        const previousHeading = index >= 1 ? new Heading(this.headings[index - 1]) : undefined
+        const nextHeading = index < this.headings.length ? new Heading(this.headings[index - 1]) : undefined
+        return new Heading(heading, previousHeading, nextHeading)
+      }
     )
+f
+    index.forEach(heading => heading.clean())
 
     return index.map(
-      ([heading, id]: [HTMLElement, string]) =>
-        html`<a href="#${id}">${heading}</a>`
+      heading => {
+        const collapse = this.collapse && heading.level > this.collapse
+        return html`
+          ${heading.isNewSubsection ? html`<lion-collapsible>` : ''}
+          ${heading.isNewSection ? html`</lion-collapsible><lion-collapsible>` : ''}
+          <a
+            href="#${heading.id}"
+            class="${collapse ? 'collapse' : ''}"
+          >${heading.element}</a>
+          ${heading.isLastHeading ? html`</lion-collapsible>` : '' }
+          `
+      }
     )
   }
 
