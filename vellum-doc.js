@@ -14,7 +14,7 @@
   // node_modules/@lit/reactive-element/css-tag.js
   var t = globalThis;
   var e = t.ShadowRoot && (void 0 === t.ShadyCSS || t.ShadyCSS.nativeShadow) && "adoptedStyleSheets" in Document.prototype && "replace" in CSSStyleSheet.prototype;
-  var s = Symbol();
+  var s = /* @__PURE__ */ Symbol();
   var o = /* @__PURE__ */ new WeakMap();
   var n = class {
     constructor(t6, e7, o8) {
@@ -94,7 +94,7 @@
   } };
   var f = (t6, s4) => !i2(t6, s4);
   var b = { attribute: true, type: String, converter: u, reflect: false, useDefault: false, hasChanged: f };
-  Symbol.metadata ??= Symbol("metadata"), a.litPropertyMetadata ??= /* @__PURE__ */ new WeakMap();
+  Symbol.metadata ??= /* @__PURE__ */ Symbol("metadata"), a.litPropertyMetadata ??= /* @__PURE__ */ new WeakMap();
   var y = class extends HTMLElement {
     static addInitializer(t6) {
       this._$Ei(), (this.l ??= []).push(t6);
@@ -104,7 +104,7 @@
     }
     static createProperty(t6, s4 = b) {
       if (s4.state && (s4.attribute = false), this._$Ei(), this.prototype.hasOwnProperty(t6) && ((s4 = Object.create(s4)).wrapped = true), this.elementProperties.set(t6, s4), !s4.noAccessor) {
-        const i6 = Symbol(), h3 = this.getPropertyDescriptor(t6, i6, s4);
+        const i6 = /* @__PURE__ */ Symbol(), h3 = this.getPropertyDescriptor(t6, i6, s4);
         void 0 !== h3 && e2(this.prototype, t6, h3);
       }
     }
@@ -304,8 +304,8 @@
   var x = y2(1);
   var b2 = y2(2);
   var w = y2(3);
-  var T = Symbol.for("lit-noChange");
-  var E = Symbol.for("lit-nothing");
+  var T = /* @__PURE__ */ Symbol.for("lit-noChange");
+  var E = /* @__PURE__ */ Symbol.for("lit-nothing");
   var A = /* @__PURE__ */ new WeakMap();
   var C = r3.createTreeWalker(r3, 129);
   function P(t6, i6) {
