@@ -46,7 +46,8 @@
     "stylelint": "^16.25.0",
     "stylelint-config-standard": "^39.0.1",
     "typescript": "~5.9.3",
-    "typescript-eslint": "^8.46.0"
+    "typescript-eslint": "^8.46.0",
+    "vellum-sidebar": "^0.0.1"
   },
   "customElements": "custom-elements.json"
 }

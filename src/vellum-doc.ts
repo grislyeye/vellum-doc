@@ -3,6 +3,7 @@ import { customElement, property } from 'lit/decorators.js'
 import { unsafeSVG } from 'lit/directives/unsafe-svg.js'
 import { slugifyWithCounter } from '@sindresorhus/slugify'
 import { LionDrawer } from '@lion/ui/drawer.js'
+import { VellumSidebar } from 'vellum-sidebar/vellum-sidebar.js'
 
 import styles from './vellum-doc.css'
 import toggleIcon from './hamburger-circle.svg'
