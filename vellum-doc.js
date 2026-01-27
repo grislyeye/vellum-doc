@@ -3423,7 +3423,13 @@
       </lion-drawer>
 
       <article id="document">
-        <div id="toggle" class="hidden" @click="${() => this.toggleIndex()}">
+        <div
+          id="toggle"
+          class="hidden"
+          @click="${() => this.toggleIndex()}"
+          role="button"
+          aria-pressed="${this.drawer ? !this.drawer.opened : false}"
+          aria-label="Toggle sidebar">
           ${o7(hamburger_circle_default)}
         </div>
         <div id="content" @click="${() => this.checkIndexVisibility()}">
