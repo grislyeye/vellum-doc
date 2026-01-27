@@ -30,6 +30,10 @@ export class VellumDocument extends LitElement {
     return this.renderRoot.querySelector('#toggle')
   }
 
+  get indexHidden(): boolean {
+    return this.drawer ? !this.drawer.opened : true
+  }
+
   override connectedCallback() {
     super.connectedCallback()
     this.labelHeaders()
@@ -51,7 +55,8 @@ export class VellumDocument extends LitElement {
         id="drawer"
         @click="${() => this.checkIndexVisibility()}"
         opened
-        hide>
+        hide
+        aria-hidden="${!this.indexHidden}">
         <div slot="content">
           <nav id="index" class="scrollable" part="index">
             ${this.renderIndex()}
@@ -65,7 +70,7 @@ export class VellumDocument extends LitElement {
           class="hidden"
           @click="${() => this.toggleIndex()}"
           role="button"
-          aria-pressed="${this.drawer ? !this.drawer.opened : false}"
+          aria-pressed="${!this.indexHidden}"
           aria-label="Toggle sidebar">
           ${unsafeSVG(toggleIcon)}
         </div>
