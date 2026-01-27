@@ -60,7 +60,13 @@ export class VellumDocument extends LitElement {
       </lion-drawer>
 
       <article id="document">
-        <div id="toggle" class="hidden" @click="${() => this.toggleIndex()}">
+        <div
+          id="toggle"
+          class="hidden"
+          @click="${() => this.toggleIndex()}"
+          role="button"
+          aria-pressed="${this.drawer ? !this.drawer.opened : false}"
+          aria-label="Toggle sidebar">
           ${unsafeSVG(toggleIcon)}
         </div>
         <div id="content" @click="${() => this.checkIndexVisibility()}">
