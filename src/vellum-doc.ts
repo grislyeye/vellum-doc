@@ -9,6 +9,8 @@ import toggleIcon from './hamburger-circle.svg'
 
 import '@lion/ui/define/lion-drawer.js'
 
+const maxMobileWidth = 700
+
 @customElement('vellum-doc')
 export class VellumDocument extends LitElement {
   static override styles = unsafeCSS(styles)
@@ -150,15 +152,23 @@ export class VellumDocument extends LitElement {
   }
 
   checkIndexVisibility() {
-    if (window.innerWidth < 700) this.showToggle()
+    if (window.innerWidth < maxMobileWidth) this.showToggle()
 
-    if (window.innerWidth < 700 && this.drawer && this.drawer.opened) {
+    if (
+      window.innerWidth < maxMobileWidth &&
+      this.drawer &&
+      this.drawer.opened
+    ) {
       this.toggleIndex()
     }
 
-    if (window.innerWidth >= 700) this.hideToggle()
+    if (window.innerWidth >= maxMobileWidth) this.hideToggle()
 
-    if (window.innerWidth >= 700 && this.drawer && !this.drawer.opened) {
+    if (
+      window.innerWidth >= maxMobileWidth &&
+      this.drawer &&
+      !this.drawer.opened
+    ) {
       this.toggleIndex()
     }
   }
