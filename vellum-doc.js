@@ -3382,6 +3382,7 @@
   customElements.define("lion-drawer", LionDrawer);
 
   // src/vellum-doc.ts
+  var maxMobileWidth = 700;
   var VellumDocument = class extends i4 {
     constructor() {
       super(...arguments);
@@ -3496,12 +3497,12 @@
       }
     }
     checkIndexVisibility() {
-      if (window.innerWidth < 700) this.showToggle();
-      if (window.innerWidth < 700 && this.drawer && this.drawer.opened) {
+      if (window.innerWidth < maxMobileWidth) this.showToggle();
+      if (window.innerWidth < maxMobileWidth && this.drawer && this.drawer.opened) {
         this.toggleIndex();
       }
-      if (window.innerWidth >= 700) this.hideToggle();
-      if (window.innerWidth >= 700 && this.drawer && !this.drawer.opened) {
+      if (window.innerWidth >= maxMobileWidth) this.hideToggle();
+      if (window.innerWidth >= maxMobileWidth && this.drawer && !this.drawer.opened) {
         this.toggleIndex();
       }
     }
