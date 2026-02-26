@@ -1,6 +1,6 @@
 {
   "name": "vellum-doc",
-  "version": "0.10.2",
+  "version": "0.11.0",
   "description": "A simple custom element for web publishing",
   "main": "vellum-doc.js",
   "module": "vellum-doc.js",
