@@ -521,7 +521,7 @@
     }
   };
   var B = t2.litHtmlPolyfillSupport;
-  B?.(S2, k), (t2.litHtmlVersions ??= []).push("3.3.2");
+  B?.(S2, k), (t2.litHtmlVersions ??= []).push("3.3.3");
   var D = (t6, i6, s4) => {
     const e7 = s4?.renderBefore ?? i6;
     let h3 = e7._$litPart$;
