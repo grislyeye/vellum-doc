@@ -52,6 +52,6 @@
   "allowScripts": {
     "fsevents": false,
     "rs-module-lexer": false,
-    "esbuild": false
+    "esbuild@0.28.2": true
   }
 }
