@@ -73,6 +73,23 @@ attribute:
 </vellum-doc>
 ```
 
+### Collapsible
+
+By default, all subsection headings are displayed in the index pane (`h1` to
+`h6`). You can collapse sub-section levels above a certain limit using the
+`collapse` attribute:
+
+```html
+<vellum-doc collapse="2">
+  <h1>Commodi</h1>
+</vellum-doc>
+```
+
+Setting `collapse` to `2`, as above, means that only `h1` and `h2` will be
+displayed in the index pane, with `h3` and above headers hidden in collapsed
+views. Clicking on the a visible index link will display the hidden sub-section
+links for that section of the document.
+
 ### Styling
 
 `<vellum-doc>` exposes CSS custom properties and shadow parts that can be used

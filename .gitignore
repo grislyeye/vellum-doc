@@ -4,9 +4,9 @@
 /docs/
 custom-elements.json
 # top level source
-vellum-doc.js
-vellum-doc.js.map
-vellum-doc.d.ts
-vellum-doc.d.ts.map
+*.js
+*js.map
+*.d.ts
+*d.ts.map
 # only generated for size check
-vellum-doc.bundled.js
+*.bundled.js
