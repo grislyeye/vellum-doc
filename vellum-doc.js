@@ -2844,10 +2844,17 @@
   var overridable_replacements_default = overridableReplacements;
 
   // node_modules/@sindresorhus/slugify/index.js
-  var decamelize = (string) => string.replaceAll(/([A-Z]{2,})(\d+)/g, "$1 $2").replaceAll(/([a-z\d]+)([A-Z]{2,})/g, "$1 $2").replaceAll(/([a-z\d])([A-Z])/g, "$1 $2").replaceAll(/([A-Z]+)([A-Z][a-rt-z\d]+)/g, "$1 $2");
+  var decamelize = (string) => string.replaceAll(/([A-Z]{2})(\d+)/g, "$1 $2").replaceAll(/([a-z\d])([A-Z])/g, "$1 $2").replaceAll(/([A-Z])([A-Z](?!s(?![a-z]))[a-z\d]+)/g, "$1 $2");
   var removeMootSeparators = (string, separator) => {
     const escapedSeparator = escapeStringRegexp(separator);
     return string.replaceAll(new RegExp(`(?:${escapedSeparator}){2,}`, "g"), separator).replaceAll(new RegExp(`^(?:${escapedSeparator})|(?:${escapedSeparator})$`, "g"), "");
+  };
+  var removeCounterSuffix = (string) => {
+    const parts = string.split("-");
+    while (parts.length > 1 && /^\d+$/.test(parts.at(-1))) {
+      parts.pop();
+    }
+    return parts.join("-");
   };
   var buildPatternSlug = (options) => {
     let negationSetPattern = String.raw`a-z\d`;
@@ -2901,7 +2908,8 @@
     if (options.lowercase) {
       string = options.locale ? string.toLocaleLowerCase(options.locale) : string.toLowerCase();
     }
-    string = string.replaceAll(/([a-zA-Z\d]+)['\u2019]([ts])(\s|$)/g, "$1$2$3");
+    const contractionPattern = options.transliterate ? /([a-z\d])['\u2019]([ts])(?![a-z\d])/gi : /([\p{L}\p{N}])['\u2019]([ts])(?![\p{L}\p{N}])/giu;
+    string = string.replaceAll(contractionPattern, "$1$2");
     string = string.replace(patternSlug, options.separator);
     string = string.replaceAll("\\", "");
     if (options.separator) {
@@ -2923,7 +2931,7 @@
         return "";
       }
       const stringLower = string.toLowerCase();
-      const numberless = occurrences.get(stringLower.replace(/(?:-\d+?)+?$/, "")) || 0;
+      const numberless = occurrences.get(removeCounterSuffix(stringLower)) || 0;
       const counter = occurrences.get(stringLower);
       occurrences.set(stringLower, typeof counter === "number" ? counter + 1 : 1);
       const newCounter = occurrences.get(stringLower) || 2;
